@@ -35,6 +35,6 @@
 
 <style lang="postcss">
 .footer {
-  @apply flex flex-col sm:flex-row gap-4 items-center justify-between dark:border-stone-500 px-4 py-6 mt-4 border-t-[1px];
+  @apply flex flex-col sm:flex-row gap-4 items-center justify-between bg-gray-100 dark:bg-gray-900 dark:border-stone-500 px-4 py-6 border-t-[1px];
 }
 </style>
