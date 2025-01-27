@@ -16,7 +16,7 @@ const { setLocale, t, locale } = useI18n();
 
 const i18nCookie = useCookie("i18n_language");
 
-const selectedLocale = ref(i18nCookie.value || locale.value || "pt");
+const selectedLocale = ref(i18nCookie.value || locale.value || "en");
 
 const locales = computed(() => [
   {
