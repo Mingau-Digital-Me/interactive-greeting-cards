@@ -4,7 +4,7 @@
       <div v-if="image">
         <div>
           <h1 class="capitalize text-3xl font-light">{{ name }}</h1>
-          <div class="text-2xl font-bold">{{ priceCurrency }}</div>
+          <div class="text-2xl font-semibold">{{ priceCurrency }}</div>
           <div class="text-sm mx-[1px] font-light">{{ planRecorrency }}</div>
         </div>
 
@@ -39,10 +39,13 @@
 
     <div class="card-pricing__footer">
       <UButton
-        onclick="acquirePlan"
-        :label="acquirelabel"
         size="lg"
         trailing-icon="i-heroicons-arrow-right"
+        :label="acquirelabel"
+        :ui="{
+          base: 'w-full flex justify-center items-center',
+        }"
+        onclick="acquirePlan"
       />
     </div>
   </div>
@@ -112,7 +115,7 @@ function acquirePlan() {}
   }
 
   &__footer {
-    @apply flex justify-center items-center py-4;
+    @apply flex justify-center items-center pt-4;
   }
 }
 </style>
