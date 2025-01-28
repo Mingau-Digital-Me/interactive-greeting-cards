@@ -2,18 +2,7 @@
   <div class="landing-page">
     <!-- <section class="landing-page__section"></section> -->
     <section class="landing-page__section--primary">
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-        <CardPricing
-          v-for="(card, index) in cardsPricing"
-          :name="card.name"
-          :image="card.image"
-          :price="card.price"
-          :items="card.items"
-          :is-per-month="card.isPerMonth"
-          :is-most-chosen="card.isMostChosen"
-          :key="index"
-        />
-      </div>
+      <CardPricingList :cards="cardsPricing" />
     </section>
     <section class="landing-page__section"></section>
     <section class="landing-page__section--primary"></section>
@@ -31,7 +20,7 @@ const cardsPricing = [
     image: "",
     // image: "./components/CardPricing/coin.png",
     price: 19.9,
-    isPerMonth: false,
+    isPerMonth: true,
     isMostChosen: false,
     items: ["First Item", "Second Item", "Third Item"],
   },
@@ -48,7 +37,7 @@ const cardsPricing = [
     name: "Bolt",
     // image: "",
     image: "./components/CardPricing/bag-of-coins.png",
-    price: 39.9,
+    price: 69.9,
     isPerMonth: false,
     isMostChosen: true,
     items: ["First Item"],
