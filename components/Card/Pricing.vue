@@ -1,11 +1,11 @@
 <template>
-  <div class="card-pricing">
+  <div class="card-pricing dark:card-pricing--dark">
     <div class="card-pricing__header">
       <div v-if="image">
         <div>
           <h1 class="capitalize text-3xl font-light">{{ name }}</h1>
           <div class="text-2xl font-bold">{{ priceCurrency }}</div>
-          <div class="text-sm font-light">{{ planRecorrency }}</div>
+          <div class="text-sm mx-[1px] font-light">{{ planRecorrency }}</div>
         </div>
 
         <NuxtImg
@@ -37,7 +37,14 @@
       </ul>
     </div>
 
-    <div class="card-pricing__footer"></div>
+    <div class="card-pricing__footer">
+      <UButton
+        onclick="acquirePlan"
+        :label="acquirelabel"
+        size="lg"
+        trailing-icon="i-heroicons-arrow-right"
+      />
+    </div>
   </div>
 </template>
 
@@ -56,10 +63,11 @@ interface IProps {
 const { name, image, price, items, isPerMonth, isMostChosen } =
   defineProps<IProps>();
 
+const priceCurrency = computed(() => formatCurrency(price));
+const acquirelabel = computed(() => `${t("CardPricing.acquire")}`);
 const planRecorrency = computed(() =>
   isPerMonth ? `${t("CardPricing.perMonth")}` : `${t("CardPricing.perYear")}`
 );
-const priceCurrency = computed(() => formatCurrency(price));
 
 function formatCurrency(value: number) {
   const currency = locale.value === "pt" ? "BRL" : "USD";
@@ -70,21 +78,23 @@ function formatCurrency(value: number) {
     currencyDisplay: "symbol",
   }).format(value);
 }
+
+function acquirePlan() {}
 </script>
 
 <style lang="postcss">
 .card-pricing {
-  @apply max-w-64 min-w-64 p-4 rounded text-black dark:text-white;
+  @apply max-w-64 min-w-64 p-6 rounded text-black dark:text-white bg-gray-100 dark:bg-gray-800 sm:transition-all sm:ease-linear sm:scale-100;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 
   &:hover {
-    .card-pricing {
-      @apply sm:dark:!bg-slate-800 sm:!bg-slate-400;
-      background-color: red;
+    @apply sm:scale-105;
 
-      &__header {
-        &--image {
-          @apply sm:scale-75 sm:-translate-y-5;
-        }
+    .card-pricing__header {
+      &--image {
+        @apply sm:scale-75 sm:-translate-y-5;
       }
     }
   }
@@ -93,7 +103,7 @@ function formatCurrency(value: number) {
     @apply relative pb-4;
 
     &--image {
-      @apply absolute -top-16 -right-20 scale-50 transition-all translate-y-0;
+      @apply absolute -top-10 -right-14 scale-50 transition-all ease-linear translate-y-0;
     }
   }
 
@@ -102,6 +112,7 @@ function formatCurrency(value: number) {
   }
 
   &__footer {
+    @apply flex justify-center items-center py-4;
   }
 }
 </style>

@@ -37,8 +37,8 @@ const cardsPricing = [
   },
   {
     name: "light",
-    image: "",
-    // image: "./components/CardPricing/coins.png",
+    // image: "",
+    image: "./components/CardPricing/coins.png",
     price: 29.9,
     isPerMonth: false,
     isMostChosen: false,
@@ -46,8 +46,8 @@ const cardsPricing = [
   },
   {
     name: "Bolt",
-    image: "",
-    // image: "./components/CardPricing/bag-of-coins.png",
+    // image: "",
+    image: "./components/CardPricing/bag-of-coins.png",
     price: 39.9,
     isPerMonth: false,
     isMostChosen: true,
