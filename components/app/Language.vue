@@ -3,7 +3,14 @@
     v-model="selectedLocale"
     :options="locales"
     option-attribute="name"
-    class="min-w-32 max-w-32"
+    class="min-w-32 max-w-32 hidden sm:inline-block"
+  />
+
+  <USelect
+    v-model="selectedLocale"
+    :options="localesMobile"
+    option-attribute="name"
+    class="min-w-16 max-w-16 sm:hidden"
   />
 </template>
 
@@ -25,6 +32,17 @@ const locales = computed(() => [
   },
   {
     name: `${t("AppLanguage.en")} 🇺🇸`,
+    value: "en",
+  },
+]);
+
+const localesMobile = computed(() => [
+  {
+    name: `🇧🇷 ${t("AppLanguage.pt")}`,
+    value: "pt",
+  },
+  {
+    name: `🇺🇸 ${t("AppLanguage.en")}`,
     value: "en",
   },
 ]);
