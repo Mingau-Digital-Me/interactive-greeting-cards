@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-hidden">
+  <div class="overflow-x-clip">
     <AppHeader />
 
     <div class="w-full flex flex-col bg-gray-100 dark:bg-gray-900">
