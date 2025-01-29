@@ -3,10 +3,10 @@
     <section class="landing-page__section">
       <div class="flex flex-col items-center sm:grid sm:grid-cols-2 gap-4">
         <div class="flex flex-col items-center justify-center gap-4 m-10">
-          <span class="text-8xl font-bold text-center">
+          <span class="text-4xl sm:text-8xl font-bold text-center">
             {{ $t("LandingPage.section.first.title") }}
           </span>
-          <span class="text-xl font-normal text-center mt-10">
+          <span class="text-lg sm:text-xl font-normal text-center mt-10">
             {{ $t("LandingPage.section.first.subtitle") }}
           </span>
 
@@ -14,7 +14,7 @@
             size="lg"
             color="gray"
             variant="solid"
-            class="w-40 text-center mt-10"
+            class="sm:w-44 text-center mt-4 sm:mt-10"
             trailing-icon="i-heroicons-arrow-right"
             :label="$t('LandingPage.section.first.button.label')"
             :ui="{

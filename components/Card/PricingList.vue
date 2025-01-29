@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+  <div class="flex flex-col sm:flex-row justify-center items-center gap-8">
     <CardPricing
       v-for="(card, index) in props.cards"
       :name="card.name"
