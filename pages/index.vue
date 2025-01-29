@@ -1,8 +1,10 @@
 <template>
   <div class="landing-page">
     <section class="landing-page__section">
-      <div class="flex flex-col items-center sm:grid sm:grid-cols-2 gap-4">
-        <div class="flex flex-col items-center justify-center gap-4 m-10">
+      <div class="flex flex-col items-center sm:grid sm:grid-cols-2 sm:gap-4">
+        <div
+          class="flex flex-col items-center justify-center gap-4 mx-10 h-dvh sm:h-fit"
+        >
           <span class="text-4xl sm:text-8xl font-bold text-center">
             {{ $t("LandingPage.section.first.title") }}
           </span>
@@ -23,10 +25,13 @@
             @click=""
           />
         </div>
-        <NuxtImg
-          class="m-10 w-10/12"
-          src="./pages/LandingPage/greetings-illustration.png"
-        />
+
+        <div class="h-dvh flex flex-col items-center justify-center sm:h-fit">
+          <NuxtImg
+            class="m-10 w-10/12"
+            src="./pages/LandingPage/greetings-illustration.png"
+          />
+        </div>
       </div>
     </section>
     <section class="landing-page__section">
