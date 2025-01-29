@@ -1,6 +1,6 @@
 <template>
   <div class="landing-page">
-    <!-- <section class="landing-page__section"></section> -->
+    <section class="landing-page__section"></section>
     <section class="landing-page__section--primary">
       <CardPricingList :cards="cardsPricing" />
     </section>
@@ -17,8 +17,8 @@ definePageMeta({
 const cardsPricing = [
   {
     name: "basic",
-    image: "",
-    // image: "./components/CardPricing/coin.png",
+    // image: "",
+    image: "./components/CardPricing/coin.png",
     price: 19.9,
     isPerMonth: true,
     isMostChosen: false,
