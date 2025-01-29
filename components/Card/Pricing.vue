@@ -88,8 +88,7 @@ function acquirePlan() {}
 .card-pricing {
   @apply max-w-64 min-w-64 p-6 rounded text-black dark:text-white bg-gray-100 dark:bg-gray-800 sm:transition-all sm:ease-linear sm:scale-100 sm:opacity-95;
 
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
   &:hover {
     @apply sm:scale-105 sm:opacity-100;
