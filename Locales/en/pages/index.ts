@@ -8,5 +8,8 @@ export default {
         label: "Discover Now",
       },
     },
+    howItWorks: {
+      title: "How it works",
+    },
   },
 };

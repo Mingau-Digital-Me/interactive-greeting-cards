@@ -1,7 +1,7 @@
 <template>
   <div class="landing-page">
     <section class="landing-page__section">
-      <div class="flex flex-col items-center sm:grid sm:grid-cols-2 sm:gap-4">
+      <div class="landing-page__section--first-view">
         <div
           class="flex flex-col items-center justify-center gap-4 mx-10 h-dvh sm:h-fit"
         >
@@ -34,8 +34,41 @@
         </div>
       </div>
     </section>
+
     <section class="landing-page__section">
-      <CardPricingList :cards="cardsPricing" />
+      <div class="landing-page__section--how-to">
+        <div class="flex flex-col self-center sm:self-start relative">
+          <h2 class="text-4xl sm:text-6xl font-bold">
+            {{ $t("LandingPage.section.howItWorks.title") }}
+          </h2>
+          <NuxtImg
+            :width="120"
+            src="./pages/LandingPage/arrow.png"
+            class="hidden sm:inline-block -rotate-[65deg] absolute left-48 top-40"
+          />
+        </div>
+
+        <div class="flex flex-wrap sm:grid sm:grid-cols-2 mt-8">
+          <div
+            class="h-60 w-60 sm:h-80 sm:w-80 m-4 flex-grow rounded-3xl bg-primary-800 border-4 border-primary-300"
+          ></div>
+          <div
+            class="h-60 w-60 sm:h-80 sm:w-80 m-4 flex-grow rounded-3xl bg-primary-800 border-4 border-primary-300"
+          ></div>
+          <div
+            class="h-60 w-60 sm:h-80 sm:w-80 m-4 flex-grow rounded-3xl bg-primary-800 border-4 border-primary-300"
+          ></div>
+          <div
+            class="h-60 w-60 sm:h-80 sm:w-80 m-4 flex-grow rounded-3xl bg-primary-800 border-4 border-primary-300"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-page__section">
+      <div class="landing-page__section--pricing">
+        <CardPricingList :cards="cardsPricing" />
+      </div>
     </section>
     <section class="landing-page__section"></section>
     <section class="landing-page__section"></section>
@@ -82,7 +115,19 @@ const cardsPricing = [
 .landing-page {
   @apply w-full max-w-full;
   &__section {
-    @apply min-h-dvh flex flex-col items-center justify-center py-4;
+    @apply min-h-dvh flex justify-center items-center pb-10 sm:pb-0;
+
+    &--first-view {
+      @apply flex flex-col items-center sm:grid sm:grid-cols-2 sm:gap-4;
+    }
+
+    &--how-to {
+      @apply flex flex-col items-center sm:grid grid-cols-2;
+    }
+
+    &--pricing {
+      @apply flex;
+    }
   }
 }
 </style>

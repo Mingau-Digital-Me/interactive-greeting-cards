@@ -1,7 +1,12 @@
 <template>
   <div class="flex flex-col justify-center items-center gap-9">
-    <span class="text-4xl font-bold">{{ $t("CardPricingList.prices") }}</span>
-    <div class="flex flex-col sm:flex-row justify-center items-center gap-8">
+    <h2 class="text-4xl sm:text-6xl font-bold">
+      {{ $t("CardPricingList.prices") }}
+    </h2>
+
+    <div
+      class="flex flex-col sm:flex-row justify-center items-center mt-8 gap-8"
+    >
       <CardPricing
         v-for="(card, index) in props.cards"
         :name="card.name"
