@@ -14,7 +14,7 @@
 
           <UButton
             size="lg"
-            color="gray"
+            color="primary"
             variant="solid"
             class="sm:w-44 text-center mt-4 sm:mt-10"
             trailing-icon="i-heroicons-arrow-right"
