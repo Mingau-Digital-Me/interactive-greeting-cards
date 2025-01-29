@@ -3,8 +3,8 @@
     <div class="card-pricing__header">
       <div v-if="image">
         <div>
-          <h1 class="capitalize text-3xl font-thin">{{ name }}</h1>
-          <div class="text-2xl font-semibold">{{ priceCurrency }}</div>
+          <h1 class="capitalize text-2xl font-thin">{{ name }}</h1>
+          <div class="text-4xl font-bold">{{ priceCurrency }}</div>
           <div class="text-sm mx-[1px] font-light">{{ planRecorrency }}</div>
         </div>
 
@@ -18,8 +18,8 @@
 
       <div v-else class="flex flex-col justify-center items-center">
         <h1 class="capitalize text-xl font-light">{{ name }}</h1>
-        <div class="flex flex-col items-center mt-2">
-          <div class="text-4xl font-bold">{{ priceCurrency }}</div>
+        <div class="flex flex-col items-center mt-1">
+          <div class="text-5xl font-bold">{{ priceCurrency }}</div>
           <div class="text-xs font-light">{{ planRecorrency }}</div>
         </div>
       </div>
@@ -39,7 +39,7 @@
 
     <div class="card-pricing__footer">
       <UButton
-        size="lg"
+        size="xl"
         trailing-icon="i-heroicons-arrow-right"
         :label="$t('CardPricing.acquire')"
         :ui="{
@@ -86,34 +86,41 @@ function acquirePlan() {}
 
 <style lang="postcss">
 .card-pricing {
-  @apply max-w-64 min-w-64 p-6 rounded text-black dark:text-white bg-gray-100 dark:bg-gray-800 sm:transition-all sm:ease-linear sm:scale-100 sm:opacity-95;
+  @apply max-w-80 min-w-80 sm:max-w-96 sm:min-w-96 rounded-2xl text-black dark:text-white bg-gray-100 dark:bg-gray-800 sm:transition-all duration-300 sm:ease-linear sm:scale-100 sm:opacity-95 dark:border dark:border-gray-600;
 
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
   &:hover {
     @apply sm:scale-105 sm:opacity-100;
 
-    .card-pricing__header {
-      &--image {
-        @apply sm:scale-75 sm:-translate-y-5;
+    .card-pricing {
+      &__header {
+        &--image {
+          @apply sm:scale-75 sm:-translate-y-5;
+        }
+      }
+      &__header,
+      &__content,
+      &__footer {
+        @apply bg-gray-50 dark:bg-gray-900;
       }
     }
   }
 
   &__header {
-    @apply relative pb-4;
+    @apply relative p-6 pb-4 rounded-t-2xl;
 
     &--image {
-      @apply absolute -top-10 -right-14 scale-50 transition-all ease-linear translate-y-0;
+      @apply absolute -top-14 -right-20 scale-50 transition-all ease-linear translate-y-0;
     }
   }
 
   &__content {
-    @apply min-h-40 py-4;
+    @apply min-h-40 py-4 bg-gray-100 dark:bg-gray-800 p-6 border-t dark:border-gray-600;
   }
 
   &__footer {
-    @apply flex justify-center items-center pt-4;
+    @apply flex justify-center items-center p-6 pt-4 bg-gray-100 dark:bg-gray-800 rounded-b-2xl;
   }
 }
 </style>

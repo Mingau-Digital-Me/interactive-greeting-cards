@@ -5,7 +5,7 @@ export default {
       subtitle:
         "Experience the magic of an interactive card, where every click and swipe unveils a special surprise for your loved ones!",
       button: {
-        label: "Discover Now",
+        label: "Discover",
       },
     },
     howItWorks: {
