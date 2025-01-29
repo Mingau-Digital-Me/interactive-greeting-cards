@@ -41,7 +41,7 @@
       <UButton
         size="lg"
         trailing-icon="i-heroicons-arrow-right"
-        :label="acquirelabel"
+        :label="$t('CardPricing.acquire')"
         :ui="{
           base: 'w-full flex justify-center items-center',
         }"
@@ -67,7 +67,6 @@ const { name, image, price, items, isPerMonth, isMostChosen } =
   defineProps<IProps>();
 
 const priceCurrency = computed(() => formatCurrency(price));
-const acquirelabel = computed(() => `${t("CardPricing.acquire")}`);
 const planRecorrency = computed(() =>
   isPerMonth ? `${t("CardPricing.perMonth")}` : `${t("CardPricing.perYear")}`
 );
