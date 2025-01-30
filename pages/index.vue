@@ -124,7 +124,7 @@ const cardsPricing = computed(() => [
     // image: "",
     image: "./components/CardPricing/coins.png",
     price: 29.9,
-    isPerMonth: false,
+    isPerMonth: true,
     isMostChosen: false,
     items: [
       t("LandingPage.section.cardsPricing.tierTwo.itemOne"),
@@ -135,7 +135,7 @@ const cardsPricing = computed(() => [
     name: "Bolt",
     // image: "",
     image: "./components/CardPricing/bag-of-coins.png",
-    price: 69.9,
+    price: 109.9,
     isPerMonth: false,
     isMostChosen: true,
     items: [t("LandingPage.section.cardsPricing.tierThree.itemOne")],
