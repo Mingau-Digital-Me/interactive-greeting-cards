@@ -70,12 +70,37 @@
         <CardPricingList :cards="cardsPricing" />
       </div>
     </section>
-    <section class="landing-page__section"></section>
-    <section class="landing-page__section"></section>
+
+    <section class="landing-page__section">
+      <div class="landing-page__section--faq">
+        <h2 class="text-4xl sm:text-6xl text-center font-bold">
+          {{ $t("LandingPage.section.faq.title") }}
+        </h2>
+
+        <UAccordion
+          :ui="{
+            wrapper: 'sm:min-w-[800px]',
+            item: {
+              padding: 'px-4',
+            },
+            default: {
+              truncate: false,
+              class: 'text-left',
+            },
+          }"
+          :items="questions"
+          variant="ghost"
+          size="xl"
+          class="mt-8"
+        />
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
+const { t, locale } = useI18n();
+
 definePageMeta({
   layout: "app",
 });
@@ -109,6 +134,25 @@ const cardsPricing = [
     items: ["First Item"],
   },
 ];
+
+const questions = computed(() => [
+  {
+    label: t("LandingPage.section.faq.question.one.label"),
+    content: t("LandingPage.section.faq.question.one.content"),
+  },
+  {
+    label: t("LandingPage.section.faq.question.two.label"),
+    content: t("LandingPage.section.faq.question.two.content"),
+  },
+  {
+    label: t("LandingPage.section.faq.question.three.label"),
+    content: t("LandingPage.section.faq.question.three.content"),
+  },
+  {
+    label: t("LandingPage.section.faq.question.four.label"),
+    content: t("LandingPage.section.faq.question.four.content"),
+  },
+]);
 </script>
 
 <style lang="postcss">
@@ -127,6 +171,10 @@ const cardsPricing = [
 
     &--pricing {
       @apply flex;
+    }
+
+    &--faq {
+      @apply flex flex-col justify-center items-center sm:gap-8 mx-8 sm:m-0;
     }
   }
 }
