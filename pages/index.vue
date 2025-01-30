@@ -99,13 +99,13 @@
 </template>
 
 <script setup lang="ts">
-const { t, locale } = useI18n();
+const { t } = useI18n();
 
 definePageMeta({
   layout: "app",
 });
 
-const cardsPricing = [
+const cardsPricing = computed(() => [
   {
     name: "basic",
     // image: "",
@@ -113,7 +113,11 @@ const cardsPricing = [
     price: 19.9,
     isPerMonth: true,
     isMostChosen: false,
-    items: ["First Item", "Second Item", "Third Item"],
+    items: [
+      t("LandingPage.section.cardsPricing.tierOne.itemOne"),
+      t("LandingPage.section.cardsPricing.tierOne.itemTwo"),
+      t("LandingPage.section.cardsPricing.tierOne.itemThree"),
+    ],
   },
   {
     name: "light",
@@ -122,7 +126,10 @@ const cardsPricing = [
     price: 29.9,
     isPerMonth: false,
     isMostChosen: false,
-    items: ["First Item", "Second Item"],
+    items: [
+      t("LandingPage.section.cardsPricing.tierTwo.itemOne"),
+      t("LandingPage.section.cardsPricing.tierTwo.itemTwo"),
+    ],
   },
   {
     name: "Bolt",
@@ -131,9 +138,9 @@ const cardsPricing = [
     price: 69.9,
     isPerMonth: false,
     isMostChosen: true,
-    items: ["First Item"],
+    items: [t("LandingPage.section.cardsPricing.tierThree.itemOne")],
   },
-];
+]);
 
 const questions = computed(() => [
   {

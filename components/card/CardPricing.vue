@@ -3,7 +3,7 @@
     <div class="card-pricing__header">
       <div v-if="image">
         <div>
-          <h1 class="capitalize text-2xl font-thin">{{ name }}</h1>
+          <h1 class="capitalize text-xl font-thin">{{ name }}</h1>
           <div class="text-4xl font-bold">{{ priceCurrency }}</div>
           <div class="text-sm mx-[1px] font-light">{{ planRecorrency }}</div>
         </div>
@@ -32,7 +32,7 @@
             name="i-heroicons-check"
             class="text-green-600 absolute bottom-1 w-5 h-5"
           />
-          <span class="m-6">{{ item }}</span>
+          <span class="text-lg m-6">{{ item }}</span>
         </li>
       </ul>
     </div>
@@ -102,7 +102,7 @@ function acquirePlan() {}
       &__header,
       &__content,
       &__footer {
-        @apply bg-gray-50 dark:bg-gray-900;
+        @apply sm:bg-gray-50 sm:dark:bg-gray-900;
       }
     }
   }

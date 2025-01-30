@@ -11,6 +11,20 @@ export default {
     howItWorks: {
       title: "Como fazer",
     },
+    cardsPricing: {
+      tierOne: {
+        itemOne: "Um ano de acesso",
+        itemTwo: "Três fotos",
+        itemThree: "Sem música",
+      },
+      tierTwo: {
+        itemOne: "Acesso vitalício",
+        itemTwo: "Sete fotos",
+      },
+      tierThree: {
+        itemOne: "Com música",
+      },
+    },
     faq: {
       title: "Perguntas Frequentes",
       question: {
