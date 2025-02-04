@@ -1,5 +1,6 @@
 <template>
   <USelect
+    v-if="show"
     v-model="selectedLocale"
     :options="locales"
     option-attribute="name"
@@ -7,6 +8,7 @@
   />
 
   <USelect
+    v-if="show"
     v-model="selectedLocale"
     :options="localesMobile"
     option-attribute="name"
@@ -15,15 +17,23 @@
 </template>
 
 <script setup lang="ts">
+interface IAppLanguageProps {
+  show: boolean;
+}
+
 import { useI18n } from "vue-i18n";
 import { ref, computed, watch } from "vue";
 import { useCookie } from "#app";
 
-const { setLocale, t, locale } = useI18n();
-
+const { setLocale, t } = useI18n();
 const i18nCookie = useCookie("i18n_language");
 
-const selectedLocale = ref(i18nCookie.value || locale.value || "en");
+const getFullLocale = () => {
+  return new Intl.DateTimeFormat().resolvedOptions().locale;
+};
+
+const currentLocale = getFullLocale() === "pt-BR" ? "pt" : "en";
+const selectedLocale = ref(currentLocale);
 
 const locales = computed(() => [
   {
@@ -47,8 +57,15 @@ const localesMobile = computed(() => [
   },
 ]);
 
+const props = defineProps<IAppLanguageProps>();
+
 watch(selectedLocale, (newLocale) => {
   setLocale(newLocale as "pt" | "en");
   i18nCookie.value = newLocale;
+});
+
+onMounted(() => {
+  setLocale(currentLocale);
+  i18nCookie.value = currentLocale;
 });
 </script>

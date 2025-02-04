@@ -4,7 +4,7 @@
 
     <div class="app-header__options">
       <AppTheme :show="false" />
-      <AppLanguage />
+      <AppLanguage :show="false" />
     </div>
   </div>
 </template>
