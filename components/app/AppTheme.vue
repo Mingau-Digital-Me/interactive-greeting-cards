@@ -1,5 +1,5 @@
 <template>
-  <ClientOnly>
+  <ClientOnly v-if="show">
     <UButton
       :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
       color="gray"
@@ -14,13 +14,29 @@
 </template>
 
 <script setup lang="ts">
+interface IAppThemeProps {
+  show: boolean;
+}
+
 const colorMode = useColorMode();
+const COLOR_MODE = {
+  DARK: "dark",
+  LIGHT: "light",
+};
+
 const isDark = computed({
   get() {
-    return colorMode.value === "dark";
+    return colorMode.value === COLOR_MODE.DARK;
   },
   set() {
-    colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
+    colorMode.preference =
+      colorMode.value === COLOR_MODE.DARK ? COLOR_MODE.LIGHT : COLOR_MODE.DARK;
   },
+});
+
+const props = defineProps<IAppThemeProps>();
+
+onMounted(() => {
+  colorMode.preference = props.show ? colorMode.value : COLOR_MODE.DARK;
 });
 </script>

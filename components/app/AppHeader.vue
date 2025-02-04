@@ -3,7 +3,7 @@
     <AppLogo />
 
     <div class="app-header__options">
-      <AppTheme />
+      <AppTheme :show="false" />
       <AppLanguage />
     </div>
   </div>
