@@ -1,6 +1,6 @@
 <template>
   <div class="landing-page">
-    <section class="landing-page__section">
+    <section id="landing-page__first-section" class="landing-page__section">
       <div class="landing-page__section--first-view">
         <div
           class="flex flex-col items-center justify-center gap-4 mx-10 h-dvh sm:h-fit"
@@ -151,14 +151,60 @@ const questions = computed(() => [
     content: t("LandingPage.section.faq.question.four.content"),
   },
 ]);
+
+let activeHearts = ref<number>(0);
+
+function createHeart() {
+  const WINDOW_WIDTH = window.innerWidth;
+  const IS_MOBILE = WINDOW_WIDTH < 400;
+  const MAX_HEARTS = IS_MOBILE ? 20 : 40;
+
+  if (activeHearts.value >= MAX_HEARTS) return;
+
+  const TIMESTAMP = new Date().getTime();
+  const HEART_SIZES = {
+    SMALL: "small",
+    MEDIUM: "medium",
+    LARGE: "large",
+  };
+
+  const heartId = "heart-" + TIMESTAMP;
+  const minX = 40;
+  const maxX = WINDOW_WIDTH - 120;
+  const leftPosition = Math.random() * (maxX - minX);
+  const duration = Math.round(Math.random() * 10 + 15);
+  const sizes = [HEART_SIZES.SMALL, HEART_SIZES.MEDIUM, HEART_SIZES.LARGE];
+
+  const heart = document.createElement("div");
+  heart.id = heartId;
+  heart.innerHTML = "❤️";
+  heart.style.left = `${leftPosition}px`;
+  heart.style.animationDuration = `${duration}s`;
+  heart.classList.add("heart");
+  heart.classList.add(sizes[Math.floor(Math.random() * sizes.length)]);
+
+  document.getElementById("landing-page__first-section")?.appendChild(heart);
+  activeHearts.value++;
+
+  setTimeout(() => {
+    const currentHeart = document.getElementById(heartId);
+    currentHeart?.remove();
+    activeHearts.value--;
+  }, duration * 1000);
+}
+
+onMounted(() => {
+  setInterval(createHeart, 500);
+});
 </script>
 
 <style lang="postcss">
 .landing-page {
   @apply w-full max-w-full;
 
-  &__faq,
-  &__section {
+  &__initial,
+  &__section,
+  &__faq {
     @apply flex justify-center items-center pb-10 sm:pb-0;
   }
 
@@ -166,7 +212,7 @@ const questions = computed(() => [
     @apply min-h-dvh;
 
     &--first-view {
-      @apply flex flex-col items-center sm:grid sm:grid-cols-2 sm:gap-4;
+      @apply flex flex-col items-center sm:grid sm:grid-cols-2 sm:gap-4 z-10;
     }
 
     &--how-to {
@@ -195,6 +241,71 @@ const questions = computed(() => [
     background-position: center;
     background-repeat: no-repeat;
     background-color: #1c1917;
+  }
+}
+
+.heart {
+  position: absolute;
+  color: red;
+  font-size: 30px;
+  top: -50px;
+  animation: heart-falling linear infinite;
+}
+
+.heart.small {
+  font-size: 20px;
+}
+.heart.medium {
+  font-size: 30px;
+}
+.heart.large {
+  font-size: 40px;
+}
+
+@keyframes heart-falling {
+  0% {
+    transform: translateY(-50px) translateX(0) scale(1);
+    opacity: 1;
+  }
+  10% {
+    transform: translateY(10vh) translateX(0) scale(1.5);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(20vh) translateX(0) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(30vh) translateX(0) scale(1.5);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(40vh) translateX(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) translateX(0) scale(1.5);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(60vh) translateX(0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(70vh) translateX(0) scale(1.5);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(80vh) translateX(0) scale(1);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(90vh) translateX(0) scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(-20px) scale(0.5);
+    opacity: 0;
   }
 }
 </style>
