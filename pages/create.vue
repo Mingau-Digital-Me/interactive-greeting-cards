@@ -32,17 +32,36 @@
           <UInput v-model="state.from" />
         </UFormGroup>
 
-        <UFormGroup :label="t('CreatePage.form.boxColor')" name="boxColor">
-          <color-picker-block v-model="state.boxColor" />
-        </UFormGroup>
+        <div>
+          <div class="sm:flex sm:gap-8 h-60">
+            <UFormGroup
+              name="boxColor"
+              class="relative w-48"
+              :class="isPro ? '' : 'not-pro'"
+              :label="t('CreatePage.form.boxColor')"
+            >
+              <color-picker-block
+                v-model="state.boxColor"
+                class="absolute top-0 sm:-left-[10px]"
+              />
+            </UFormGroup>
 
-        <UFormGroup
-          :label="t('CreatePage.form.backgroundColor')"
-          name="backgroundColor"
-          class=""
-        >
-          <color-picker-block v-model="state.backgroundColor" />
-        </UFormGroup>
+            <UFormGroup
+              name="backgroundColor"
+              class="relative w-48"
+              :class="isPro ? '' : 'not-pro'"
+              :label="t('CreatePage.form.backgroundColor')"
+            >
+              <color-picker-block
+                v-model="state.backgroundColor"
+                class="absolute top-0 sm:-left-[10px]"
+              />
+            </UFormGroup>
+          </div>
+          <p v-show="!isPro" class="text-sm text-gray-600">
+            {{ t("CreatePage.pro.enablePro") }}
+          </p>
+        </div>
 
         <UButton type="submit">{{ t("CreatePage.form.create") }}</UButton>
       </UForm>
@@ -57,7 +76,11 @@ definePageMeta({
 
 import { z } from "zod";
 const { t } = useI18n();
+const { query } = useRoute();
 import type { FormSubmitEvent } from "#ui/types";
+
+const isPro = computed(() => query.isPro === "true");
+
 const MIN_TEXT_CHARACTER = 100;
 const MAX_TEXT_CHARACTER = 500;
 
@@ -98,5 +121,9 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
 .CP-block {
   @apply !bg-transparent;
+}
+
+.not-pro {
+  @apply pointer-events-none opacity-40;
 }
 </style>

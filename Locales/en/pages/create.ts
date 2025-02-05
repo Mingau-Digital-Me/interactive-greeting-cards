@@ -15,4 +15,7 @@ export default {
     },
     from: "The field must be filled in.",
   },
+  pro: {
+    enablePro: "Choose the Pro plan to access this feature.",
+  },
 };

@@ -15,4 +15,7 @@ export default {
     },
     from: "O campo deve ser preenchido.",
   },
+  pro: {
+    enablePro: "Escolha o plano Pro para ter acesso a essa funcionalidade.",
+  },
 };
