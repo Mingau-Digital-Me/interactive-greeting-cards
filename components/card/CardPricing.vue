@@ -1,5 +1,8 @@
 <template>
-  <div class="card-pricing dark:card-pricing--dark">
+  <div
+    class="card-pricing dark:card-pricing--dark"
+    :class="isMostChosen ? 'card-pricing--is-most-chosen' : ''"
+  >
     <div class="card-pricing__header">
       <div v-if="image">
         <div>
@@ -25,12 +28,15 @@
       </div>
     </div>
 
-    <div class="card-pricing__content">
+    <div
+      class="card-pricing__content"
+      :class="isMostChosen ? 'card-pricing__content--is-most-chosen' : ''"
+    >
       <ul>
         <li v-for="(item, index) in items" :key="index" class="relative mt-1">
           <UIcon
-            name="i-heroicons-check"
-            class="text-green-600 absolute bottom-1 w-5 h-5"
+            name="i-heroicons-solid-heart"
+            class="text-red-600 absolute bottom-1 w-5 h-5"
           />
           <span class="text-lg m-6">{{ item }}</span>
         </li>
@@ -47,6 +53,13 @@
         }"
         onclick="acquirePlan"
       />
+    </div>
+
+    <div
+      v-if="isMostChosen"
+      :class="isMostChosen ? 'card-pricing__most-chosen' : ''"
+    >
+      {{ t("CardPricing.mostChosen") }}
     </div>
   </div>
 </template>
@@ -86,7 +99,7 @@ function acquirePlan() {}
 
 <style lang="postcss">
 .card-pricing {
-  @apply max-w-80 min-w-80 sm:max-w-96 sm:min-w-96 rounded-2xl text-black dark:text-white bg-gray-100 dark:bg-gray-800 sm:transition-all duration-300 sm:ease-linear sm:scale-100 sm:opacity-95 dark:border dark:border-gray-600;
+  @apply max-w-80 min-w-80 sm:max-w-96 sm:min-w-96 rounded-2xl text-black dark:text-white bg-gray-100 dark:bg-gray-800 sm:transition-all duration-300 sm:ease-linear sm:scale-100 sm:opacity-95 dark:border dark:border-gray-600 relative;
 
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
@@ -111,16 +124,28 @@ function acquirePlan() {}
     @apply relative p-6 pb-4 rounded-t-2xl;
 
     &--image {
-      @apply absolute -top-14 -right-20 scale-50 transition-all ease-linear translate-y-0;
+      @apply absolute -top-16 sm:-top-20 -right-24 sm:-right-28 scale-50 transition-all ease-linear translate-y-0;
     }
   }
 
   &__content {
     @apply min-h-40 py-4 bg-gray-100 dark:bg-gray-800 p-6 border-t dark:border-gray-600;
+
+    &--is-most-chosen {
+      @apply dark:border-red-500 border-t-2;
+    }
   }
 
   &__footer {
     @apply flex justify-center items-center p-6 pt-4 bg-gray-100 dark:bg-gray-800 rounded-b-2xl;
+  }
+
+  &__most-chosen {
+    @apply absolute -top-5 left-6 bg-red-600 rounded-lg py-2 px-4 font-bold italic;
+  }
+
+  &--is-most-chosen {
+    @apply dark:border-2 dark:border-red-500;
   }
 }
 </style>

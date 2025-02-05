@@ -71,7 +71,7 @@
       </div>
     </section>
 
-    <section class="landing-page__section">
+    <section class="landing-page__faq">
       <div class="landing-page__section--faq">
         <h2 class="text-4xl sm:text-6xl text-center font-bold">
           {{ $t("LandingPage.section.faq.title") }}
@@ -109,7 +109,7 @@ const cardsPricing = computed(() => [
   {
     name: "basic",
     // image: "",
-    image: "./components/CardPricing/coin.png",
+    image: "./components/CardPricing/single-heart.png",
     price: 19.9,
     isPerMonth: true,
     isMostChosen: false,
@@ -120,25 +120,16 @@ const cardsPricing = computed(() => [
     ],
   },
   {
-    name: "light",
+    name: "pro",
     // image: "",
-    image: "./components/CardPricing/coins.png",
-    price: 29.9,
-    isPerMonth: true,
-    isMostChosen: false,
+    image: "./components/CardPricing/multiple-hearts.png",
+    price: 290.9,
+    isPerMonth: false,
+    isMostChosen: true,
     items: [
       t("LandingPage.section.cardsPricing.tierTwo.itemOne"),
       t("LandingPage.section.cardsPricing.tierTwo.itemTwo"),
     ],
-  },
-  {
-    name: "Bolt",
-    // image: "",
-    image: "./components/CardPricing/bag-of-coins.png",
-    price: 109.9,
-    isPerMonth: false,
-    isMostChosen: true,
-    items: [t("LandingPage.section.cardsPricing.tierThree.itemOne")],
   },
 ]);
 
@@ -165,8 +156,14 @@ const questions = computed(() => [
 <style lang="postcss">
 .landing-page {
   @apply w-full max-w-full;
+
+  &__faq,
   &__section {
-    @apply min-h-dvh flex justify-center items-center pb-10 sm:pb-0;
+    @apply flex justify-center items-center pb-10 sm:pb-0;
+  }
+
+  &__section {
+    @apply min-h-dvh;
 
     &--first-view {
       @apply flex flex-col items-center sm:grid sm:grid-cols-2 sm:gap-4;
@@ -181,8 +178,23 @@ const questions = computed(() => [
     }
 
     &--faq {
-      @apply flex flex-col justify-center items-center sm:gap-8 mx-8 sm:m-0;
+      @apply flex flex-col justify-center items-center sm:gap-8 mx-8 sm:m-0 w-max h-max;
     }
+  }
+
+  &__faq {
+    @apply sm:justify-between h-[680px] sm:pl-4;
+
+    background-image: linear-gradient(
+        to bottom,
+        #1c1917 0%,
+        rgba(28, 25, 23, 0) 60%
+      ),
+      url("../public/pages/LandingPage/faq.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #1c1917;
   }
 }
 </style>

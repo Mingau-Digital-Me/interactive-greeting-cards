@@ -1,5 +1,5 @@
 <template>
   <div class="flex justify-center items-center">
-    <span class="text-xl sm:text-2xl font-bold">Boilerplate</span>
+    <NuxtImg :height="40" src="./components/app/Logo/hardy-greetings.png" />
   </div>
 </template>
