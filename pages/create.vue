@@ -11,6 +11,23 @@
           <UInput v-model="state.to" />
         </UFormGroup>
 
+        <UFormGroup
+          :label="t('CreatePage.form.text')"
+          name="text"
+          class="relative"
+        >
+          <UTextarea v-model="state.text" :maxrows="5" :rows="6" />
+          <p
+            v-if="state.text.length > 500"
+            class="absolute -top-6 right-0 text-xs text-red-400"
+          >
+            {{ state.text.length }} / {{ MAX_TEXT_CHARACTER }}
+          </p>
+          <p v-else class="absolute -top-6 right-0 text-xs">
+            {{ state.text.length }} / {{ MAX_TEXT_CHARACTER }}
+          </p>
+        </UFormGroup>
+
         <UFormGroup :label="t('CreatePage.form.from')" name="from">
           <UInput v-model="state.from" />
         </UFormGroup>
@@ -41,9 +58,15 @@ definePageMeta({
 import { z } from "zod";
 const { t } = useI18n();
 import type { FormSubmitEvent } from "#ui/types";
+const MIN_TEXT_CHARACTER = 100;
+const MAX_TEXT_CHARACTER = 500;
 
 const schema = z.object({
   to: z.string().min(1, t("CreatePage.error.to")),
+  text: z
+    .string()
+    .min(MIN_TEXT_CHARACTER, t("CreatePage.error.text.min"))
+    .max(MAX_TEXT_CHARACTER, t("CreatePage.error.text.max")),
   from: z.string().min(1, t("CreatePage.error.from")),
   boxColor: z.string().nonempty(),
   backgroundColor: z.string().nonempty(),
@@ -53,6 +76,7 @@ type Schema = z.output<typeof schema>;
 
 const state = reactive({
   to: "",
+  text: "",
   from: "",
   boxColor: "#000000",
   backgroundColor: "#f97373",
