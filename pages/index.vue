@@ -170,7 +170,7 @@ function createHeart() {
 
   const heartId = "heart-" + TIMESTAMP;
   const minX = 40;
-  const maxX = WINDOW_WIDTH - 120;
+  const maxX = WINDOW_WIDTH - 80;
   const leftPosition = Math.random() * (maxX - minX);
   const duration = Math.round(Math.random() * 10 + 15);
   const sizes = [HEART_SIZES.SMALL, HEART_SIZES.MEDIUM, HEART_SIZES.LARGE];
@@ -199,6 +199,10 @@ onMounted(() => {
 </script>
 
 <style lang="postcss">
+#landing-page__first-section {
+  @apply overflow-x-hidden;
+}
+
 .landing-page {
   @apply w-full max-w-full;
 
