@@ -51,7 +51,7 @@
         :ui="{
           base: 'w-full flex justify-center items-center',
         }"
-        onclick="acquirePlan"
+        @click="navigateToCreate()"
       />
     </div>
 
@@ -94,7 +94,14 @@ function formatCurrency(value: number) {
   }).format(value);
 }
 
-function acquirePlan() {}
+async function navigateToCreate() {
+  await navigateTo({
+    path: "/create",
+    query: {
+      isPro: String(isMostChosen),
+    },
+  });
+}
 </script>
 
 <style lang="postcss">

@@ -22,7 +22,7 @@
             :ui="{
               base: 'w-full flex justify-center items-center',
             }"
-            @click=""
+            @click="navigateToCreate()"
           />
         </div>
 
@@ -192,6 +192,15 @@ function createHeart() {
     currentHeart?.remove();
     activeHearts.value--;
   }, duration * 1000);
+}
+
+async function navigateToCreate(isPro: boolean = false) {
+  await navigateTo({
+    path: "/create",
+    query: {
+      isPro: String(isPro),
+    },
+  });
 }
 
 onMounted(() => {
