@@ -173,11 +173,12 @@ function createHeart() {
   const maxX = WINDOW_WIDTH - 80;
   const leftPosition = Math.random() * (maxX - minX);
   const duration = Math.round(Math.random() * 10 + 15);
+  const heartColor = Math.random() > 0.3 ? "red" : "white";
   const sizes = [HEART_SIZES.SMALL, HEART_SIZES.MEDIUM, HEART_SIZES.LARGE];
 
-  const heart = document.createElement("div");
+  const heart = document.createElement("img");
   heart.id = heartId;
-  heart.innerHTML = "❤️";
+  heart.src = `./pages/LandingPage/${heartColor}-heart.png`;
   heart.style.left = `${leftPosition}px`;
   heart.style.animationDuration = `${duration}s`;
   heart.classList.add("heart");
@@ -194,7 +195,10 @@ function createHeart() {
 }
 
 onMounted(() => {
-  setInterval(createHeart, 500);
+  const WINDOW_WIDTH = window.innerWidth;
+  const IS_MOBILE = WINDOW_WIDTH < 400;
+
+  setInterval(createHeart, IS_MOBILE ? 1200 : 500);
 });
 </script>
 
@@ -257,13 +261,19 @@ onMounted(() => {
 }
 
 .heart.small {
-  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  filter: brightness(50%);
 }
 .heart.medium {
-  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  filter: brightness(50%);
 }
 .heart.large {
-  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  filter: brightness(50%);
 }
 
 @keyframes heart-falling {
