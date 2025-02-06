@@ -21,4 +21,21 @@ export default {
   pro: {
     enablePro: "Escolha o plano Pro para ter acesso a essa funcionalidade.",
   },
+  toast: {
+    changeToPro: {
+      title: "Que tal mudar de plano?",
+      description: "Para {amount} fotos, é necessário mudar para Pro.",
+      buttonLabel: "Mudar para Pro",
+    },
+    removePhotos: {
+      title: "Que pena... mas ainda dá tempo!",
+      description:
+        "Escolha o plano Pro e evite a remoção das fotos ao concluir o pagamento.",
+    },
+    overPlan: {
+      title: "Opa, tem mais foto que o plano Pro cobre.",
+      description:
+        "Futuramente teremos cartões para {amount} fotos. Por enquanto, vamos considerar as 5 (Básico) ou 8 (Pro) primeiras fotos.",
+    },
+  },
 };
