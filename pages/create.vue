@@ -199,7 +199,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   @apply min-h-[82dvh] sm:grid sm:grid-cols-2 sm:gap-8 gap-4 flex flex-col items-center px-4 sm:px-0 w-full;
 
   &__form {
-    @apply sm:max-h-[80dvh] sm:overflow-y-auto sm:flex sm:justify-center;
+    @apply sm:max-h-[80dvh] sm:overflow-y-auto sm:flex sm:justify-center max-w-full;
 
     &-wrapper {
       @apply flex flex-col gap-8 max-w-[520px];
