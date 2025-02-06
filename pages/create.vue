@@ -4,10 +4,10 @@
       <UForm
         :schema="schema"
         :state="state"
-        class="space-y-4"
         @submit="onSubmit"
+        class="max-w-[520px] flex flex-col gap-4"
       >
-        <UFormGroup :label="t('CreatePage.form.to')" name="to">
+        <UFormGroup :label="t('CreatePage.form.to')" name="to" size="xl">
           <UInput v-model="state.to" />
         </UFormGroup>
 
@@ -15,6 +15,7 @@
           :label="t('CreatePage.form.text')"
           name="text"
           class="relative"
+          size="xl"
         >
           <UTextarea v-model="state.text" :maxrows="5" :rows="6" />
           <p
@@ -28,33 +29,35 @@
           </p>
         </UFormGroup>
 
-        <UFormGroup :label="t('CreatePage.form.from')" name="from">
+        <UFormGroup :label="t('CreatePage.form.from')" name="from" size="xl">
           <UInput v-model="state.from" />
         </UFormGroup>
 
         <div>
-          <div class="sm:flex sm:gap-8 h-60">
+          <div class="flex sm:gap-8 h-60">
             <UFormGroup
               name="boxColor"
-              class="relative w-48"
+              size="xl"
+              class="sm:relative w-48"
               :class="isPro ? '' : 'not-pro'"
               :label="t('CreatePage.form.boxColor')"
             >
               <color-picker-block
                 v-model="state.boxColor"
-                class="absolute top-0 sm:-left-[10px]"
+                class="absolute top-0 -left-[10px]"
               />
             </UFormGroup>
 
             <UFormGroup
               name="backgroundColor"
-              class="relative w-48"
+              size="xl"
+              class="sm:relative w-48"
               :class="isPro ? '' : 'not-pro'"
               :label="t('CreatePage.form.backgroundColor')"
             >
               <color-picker-block
                 v-model="state.backgroundColor"
-                class="absolute top-0 sm:-left-[10px]"
+                class="absolute top-0 -left-[10px]"
               />
             </UFormGroup>
           </div>
@@ -63,7 +66,9 @@
           </p>
         </div>
 
-        <UButton type="submit">{{ t("CreatePage.form.create") }}</UButton>
+        <UButton class="flex justify-center" type="submit">{{
+          t("CreatePage.form.create")
+        }}</UButton>
       </UForm>
     </div>
   </div>
@@ -112,10 +117,15 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 </script>
 
 <style lang="postcss">
+html {
+  @apply max-h-dvh overflow-y-auto;
+}
+
 .create-page {
-  @apply min-h-[82dvh] sm:p-8 p-4 sm:grid sm:grid-cols-2 sm:gap-8;
+  @apply min-h-[82dvh] sm:p-8 p-4 sm:grid sm:grid-cols-2 sm:gap-8 w-full;
 
   &__form {
+    @apply sm:flex sm:justify-center sm:max-h-[76dvh] sm:overflow-y-auto;
   }
 }
 
