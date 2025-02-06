@@ -76,26 +76,22 @@
                 />
               </UFormGroup>
             </div>
-            <p v-show="!isPro" class="text-sm">
+            <p v-show="!isPro" class="text-gray-400 text-base">
               {{ t("CreatePage.pro.enablePro") }}
             </p>
           </div>
 
           <UFormGroup
             :label="t('CreatePage.form.music.label')"
-            name="name"
+            name="music"
             size="xl"
+            :help="!isPro ? t('CreatePage.pro.enablePro') : ''"
             :class="isPro ? '' : 'not-pro'"
-            class="flex flex-col gap-1"
           >
             <UInput
               v-model="state.music"
               :placeholder="t('CreatePage.form.music.placeholder')"
             />
-
-            <p v-show="!isPro" class="text-sm pt-2">
-              {{ t("CreatePage.pro.enablePro") }}
-            </p>
           </UFormGroup>
 
           <UButton class="flex justify-center" type="submit">{{
@@ -127,6 +123,8 @@ const MIN_TEXT_CHARACTER = 100;
 const MAX_TEXT_CHARACTER = 500;
 const MAX_NUMBER_OF_IMAGES_FOR_BASIC_PLAN = 5;
 const MAX_NUMBER_OF_IMAGES_FOR_PRO_PLAN = 8;
+const YOUTUBE_REGEX =
+  /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/)|youtu\.be\/)[\w-]+(&\S*)?$/;
 
 const schema = z.object({
   to: z.string().min(1, t("CreatePage.error.to")),
@@ -139,8 +137,8 @@ const schema = z.object({
   backgroundColor: z.string().nonempty(),
   music: z
     .string()
-    .regex(
-      /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/)|youtu\.be\/)[\w-]+(&\S*)?$/,
+    .refine(
+      (val) => val === "" || YOUTUBE_REGEX.test(val),
       t("CreatePage.error.music")
     ),
 });
