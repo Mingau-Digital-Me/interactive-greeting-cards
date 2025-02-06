@@ -1,4 +1,6 @@
 export default {
+  title: "We're almost done!",
+  subtitle: "Fill out the form below with your interactive card information.",
   form: {
     to: "To",
     text: "Card text",

@@ -1,4 +1,7 @@
 export default {
+  title: "Estamos quase lá!",
+  subtitle:
+    "Preencha o formulário abaixo com as informações do seu cartão interativo.",
   form: {
     to: "Para",
     text: "Texto do cartão",

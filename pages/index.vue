@@ -107,7 +107,7 @@ definePageMeta({
 
 const cardsPricing = computed(() => [
   {
-    name: "basic",
+    name: t("TogglePlan.type.basic"),
     // image: "",
     image: "./components/CardPricing/single-heart.png",
     price: 19.9,
@@ -120,7 +120,7 @@ const cardsPricing = computed(() => [
     ],
   },
   {
-    name: "pro",
+    name: t("TogglePlan.type.pro"),
     // image: "",
     image: "./components/CardPricing/multiple-hearts.png",
     price: 290.9,
