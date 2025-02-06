@@ -11,6 +11,8 @@
 
         <TogglePlan v-model="isPro" />
 
+        <input type="file" @input="handleFile" multiple />
+
         <UForm
           :schema="schema"
           :state="state"
@@ -122,18 +124,29 @@ const state = reactive({
   backgroundColor: "#f97373",
 });
 
+const { handleFileInput, files } = useFileStorage({ clearOldFiles: false });
+async function handleFile(event: Event) {
+  await handleFileInput(event);
+
+  const currentFiles = [...JSON.parse(JSON.stringify(files.value))];
+  console.log("handleFileInput: ", currentFiles.length, currentFiles);
+}
+
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  // Do something with data
-  console.log({ ...event.data, isPro: isPro.value });
+  console.log("onSubmit: ", {
+    ...event.data,
+    isPro: isPro.value,
+    images: [...JSON.parse(JSON.stringify(files.value))],
+  });
 }
 </script>
 
 <style lang="postcss">
 .create-page {
-  @apply min-h-[82dvh] sm:grid sm:grid-cols-2 sm:gap-8 gap-4 flex flex-col px-4 sm:px-0 w-full;
+  @apply min-h-[82dvh] sm:grid sm:grid-cols-2 sm:gap-8 gap-4 flex flex-col items-center px-4 sm:px-0 w-full;
 
   &__form {
-    @apply sm:max-h-[76dvh] sm:overflow-y-auto sm:flex sm:justify-center;
+    @apply sm:max-h-[80dvh] sm:overflow-y-auto sm:flex sm:justify-center;
 
     &-wrapper {
       @apply flex flex-col gap-8 max-w-[520px];

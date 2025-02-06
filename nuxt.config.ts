@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxt/image",
     "nuxt-color-picker",
+    "nuxt-file-storage",
   ],
   css: ["~/assets/css/styles.css"],
   postcss: {
@@ -32,4 +33,7 @@ export default defineNuxtConfig({
       cookieKey: "i18n_language",
     },
   },
+  // fileStorage: {
+  //   mount: "public/storage",
+  // },
 });
