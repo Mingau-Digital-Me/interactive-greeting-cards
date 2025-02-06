@@ -55,6 +55,7 @@
                 :label="t('CreatePage.form.boxColor')"
               >
                 <color-picker-block
+                  :key="updateColorPickerComponent"
                   v-model="state.boxColor"
                   class="absolute top-0 -left-[10px]"
                 />
@@ -68,6 +69,7 @@
                 :label="t('CreatePage.form.backgroundColor')"
               >
                 <color-picker-block
+                  :key="updateColorPickerComponent"
                   v-model="state.backgroundColor"
                   class="absolute top-0 -left-[10px]"
                 />
@@ -101,6 +103,7 @@ const { query } = useRoute();
 const toast = useToast();
 
 const isPro = ref<boolean>(query.isPro === "true");
+const updateColorPickerComponent = ref(0);
 
 const MIN_TEXT_CHARACTER = 100;
 const MAX_TEXT_CHARACTER = 500;
@@ -131,15 +134,14 @@ const state = reactive({
   backgroundColor: DEFAULT_BACKGROUND_COLOR,
 });
 
-// TODO Pro to basic cannot save color set when pro is selected
-// watch(isPro, (old, current) => {
-//   if (!old && current) {
-//     console.log("aaaa");
+watch(isPro, (old, current) => {
+  if (!old && current) {
+    state.boxColor = DEFAULT_BOX_COLOR;
+    state.backgroundColor = DEFAULT_BACKGROUND_COLOR;
 
-//     state.boxColor = DEFAULT_BOX_COLOR;
-//     state.backgroundColor = DEFAULT_BACKGROUND_COLOR;
-//   }
-// });
+    updateColorPickerComponent.value++;
+  }
+});
 
 const { handleFileInput, files } = useFileStorage({ clearOldFiles: true });
 async function handleFile(event: Event) {
