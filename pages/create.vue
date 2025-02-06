@@ -4,7 +4,7 @@
       <div class="create-page__form-wrapper">
         <div class="pt-4 sm:pt-8">
           <h2 class="text-3xl font-bold">{{ t("CreatePage.title") }}</h2>
-          <p class="text-base text-gray-400 py-2">
+          <p class="text-base text-gray-400 py-1 sm:py-2">
             {{ t("CreatePage.subtitle") }}
           </p>
         </div>
