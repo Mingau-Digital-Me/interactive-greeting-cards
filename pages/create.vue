@@ -11,7 +11,10 @@
 
         <TogglePlan v-model="isPro" />
 
-        <input type="file" @input="handleFile" multiple />
+        <div class="flex flex-col gap-1 font-medium">
+          <label>{{ t("CreatePage.form.images") }}</label>
+          <input type="file" @input="handleImages" multiple />
+        </div>
 
         <UForm
           :schema="schema"
@@ -45,13 +48,12 @@
             <UInput v-model="state.from" />
           </UFormGroup>
 
-          <div>
+          <div :class="isPro ? '' : 'not-pro'">
             <div class="flex sm:gap-8 h-60">
               <UFormGroup
                 name="boxColor"
                 size="xl"
                 class="sm:relative w-48"
-                :class="isPro ? '' : 'not-pro'"
                 :label="t('CreatePage.form.boxColor')"
               >
                 <color-picker-block
@@ -65,7 +67,6 @@
                 name="backgroundColor"
                 size="xl"
                 class="sm:relative w-48"
-                :class="isPro ? '' : 'not-pro'"
                 :label="t('CreatePage.form.backgroundColor')"
               >
                 <color-picker-block
@@ -75,10 +76,27 @@
                 />
               </UFormGroup>
             </div>
-            <p v-show="!isPro" class="text-sm text-gray-600">
+            <p v-show="!isPro" class="text-sm">
               {{ t("CreatePage.pro.enablePro") }}
             </p>
           </div>
+
+          <UFormGroup
+            :label="t('CreatePage.form.music.label')"
+            name="name"
+            size="xl"
+            :class="isPro ? '' : 'not-pro'"
+            class="flex flex-col gap-1"
+          >
+            <UInput
+              v-model="state.music"
+              :placeholder="t('CreatePage.form.music.placeholder')"
+            />
+
+            <p v-show="!isPro" class="text-sm pt-2">
+              {{ t("CreatePage.pro.enablePro") }}
+            </p>
+          </UFormGroup>
 
           <UButton class="flex justify-center" type="submit">{{
             t("CreatePage.form.create")
@@ -107,8 +125,8 @@ const updateColorPickerComponent = ref(0);
 
 const MIN_TEXT_CHARACTER = 100;
 const MAX_TEXT_CHARACTER = 500;
-const MAX_NUMBER_OF_PHOTOS_FOR_BASIC_PLAN = 5;
-const MAX_NUMBER_OF_PHOTOS_FOR_PRO_PLAN = 8;
+const MAX_NUMBER_OF_IMAGES_FOR_BASIC_PLAN = 5;
+const MAX_NUMBER_OF_IMAGES_FOR_PRO_PLAN = 8;
 
 const schema = z.object({
   to: z.string().min(1, t("CreatePage.error.to")),
@@ -119,6 +137,12 @@ const schema = z.object({
   from: z.string().min(1, t("CreatePage.error.from")),
   boxColor: z.string().nonempty(),
   backgroundColor: z.string().nonempty(),
+  music: z
+    .string()
+    .regex(
+      /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/)|youtu\.be\/)[\w-]+(&\S*)?$/,
+      t("CreatePage.error.music")
+    ),
 });
 
 type Schema = z.output<typeof schema>;
@@ -132,6 +156,7 @@ const state = reactive({
   from: "",
   boxColor: DEFAULT_BOX_COLOR,
   backgroundColor: DEFAULT_BACKGROUND_COLOR,
+  music: "",
 });
 
 watch(isPro, (old, current) => {
@@ -144,23 +169,24 @@ watch(isPro, (old, current) => {
 });
 
 const { handleFileInput, files } = useFileStorage({ clearOldFiles: true });
-async function handleFile(event: Event) {
+
+async function handleImages(event: Event) {
   await handleFileInput(event);
 
-  const currentFiles = [...JSON.parse(JSON.stringify(files.value))];
+  const currentImages = [...JSON.parse(JSON.stringify(files.value))];
 
-  if (currentFiles.length > MAX_NUMBER_OF_PHOTOS_FOR_PRO_PLAN) {
+  if (currentImages.length > MAX_NUMBER_OF_IMAGES_FOR_PRO_PLAN) {
     toast.add({
       title: t("CreatePage.toast.overPlan.title"),
       description: t("CreatePage.toast.overPlan.description", {
-        amount: currentFiles.length,
+        amount: currentImages.length,
       }),
     });
-  } else if (currentFiles.length > MAX_NUMBER_OF_PHOTOS_FOR_BASIC_PLAN) {
+  } else if (currentImages.length > MAX_NUMBER_OF_IMAGES_FOR_BASIC_PLAN) {
     toast.add({
       title: t("CreatePage.toast.changeToPro.title"),
       description: t("CreatePage.toast.changeToPro.description", {
-        amount: currentFiles.length,
+        amount: currentImages.length,
       }),
       actions: [
         {
@@ -183,8 +209,8 @@ async function handleFile(event: Event) {
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   const rawFiles = [...JSON.parse(JSON.stringify(files.value))];
   const images = isPro
-    ? rawFiles.slice(0, MAX_NUMBER_OF_PHOTOS_FOR_PRO_PLAN)
-    : rawFiles.slice(0, MAX_NUMBER_OF_PHOTOS_FOR_BASIC_PLAN);
+    ? rawFiles.slice(0, MAX_NUMBER_OF_IMAGES_FOR_PRO_PLAN)
+    : rawFiles.slice(0, MAX_NUMBER_OF_IMAGES_FOR_BASIC_PLAN);
 
   console.log("onSubmit: ", {
     ...event.data,

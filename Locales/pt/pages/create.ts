@@ -3,12 +3,17 @@ export default {
   subtitle:
     "Preencha o formulário abaixo com as informações do seu cartão interativo.",
   form: {
+    images: "Imagens",
     to: "Para",
     text: "Texto do cartão",
     from: "De",
     create: "Criar",
     boxColor: "Cor da caixa",
     backgroundColor: "Cor de fundo",
+    music: {
+      label: "Música do YouTube",
+      placeholder: "Ex: https://www.youtube.com/watch?v=NNC0kIzM1Fo",
+    },
   },
   error: {
     to: "O campo deve ser preenchido.",
@@ -17,6 +22,7 @@ export default {
       max: "O campo deve ter no máximo 500 caracteres.",
     },
     from: "O campo deve ser preenchido.",
+    music: "A URL deve ser um link válido do YouTube.",
   },
   pro: {
     enablePro: "Escolha o plano Pro para ter acesso a essa funcionalidade.",
