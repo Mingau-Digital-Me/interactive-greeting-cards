@@ -6,12 +6,13 @@
         <div class="box__face box__face--right"></div>
         <div class="box__face box__face--back"></div>
         <div class="box__face box__face--left"></div>
-        <div class="cube__face box__face--top"></div>
+        <div id="love-box-top" class="cube__face box__face--top"></div>
         <div class="cube__face box__face--bottom"></div>
       </div>
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 export interface IGreetingsLoveBoxProps {
   isPreview?: boolean;
@@ -26,18 +27,6 @@ const backgroundColor = defineModel("backgroundColor");
 const music = defineModel("music");
 
 const props = defineProps<IGreetingsLoveBoxProps>();
-
-const topFace = document?.querySelector(".box__face--top");
-
-topFace?.addEventListener("click", () => {
-  if (topFace.classList.contains("open")) {
-    topFace.classList.remove("open");
-    topFace.classList.add("close");
-  } else if (topFace.classList.contains("close") || true) {
-    topFace.classList.remove("close");
-    topFace.classList.add("open");
-  }
-});
 
 const CSS_VARS = {
   BOX_COLOR: "--color-box",
@@ -54,6 +43,28 @@ watch(boxColor, (newValue) => {
 });
 watch(backgroundColor, (newValue) => {
   setRootVars(CSS_VARS.BACKGROUND_COLOR, newValue as string);
+});
+
+function addEvents() {
+  addEventOpenTopLoveBox();
+}
+
+function addEventOpenTopLoveBox() {
+  const topFace = document.getElementById("love-box-top");
+
+  topFace?.addEventListener("click", () => {
+    if (topFace.classList.contains("open")) {
+      topFace.classList.remove("open");
+      topFace.classList.add("close");
+    } else if (topFace.classList.contains("close") || true) {
+      topFace.classList.remove("close");
+      topFace.classList.add("open");
+    }
+  });
+}
+
+onMounted(() => {
+  addEvents();
 });
 </script>
 
@@ -75,18 +86,17 @@ watch(backgroundColor, (newValue) => {
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
   --color-background: #f97373;
-  --color-box: #000000;
+  --color-box: red // #000000;;
 }
 
 .love-box {
-  @apply flex-grow;
+  @apply flex-grow z-10;
 
   margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: sans-serif;
   overflow: hidden;
   background: var(--color-background);
 }
@@ -112,7 +122,7 @@ watch(backgroundColor, (newValue) => {
 .box__face,
 .cube__face {
   position: absolute;
-  width: var(--box-width);
+  width: calc(var(--box-width) + 2px);
   height: var(--box-height);
   border-radius: 4px;
   line-height: 400px;
@@ -170,9 +180,8 @@ watch(backgroundColor, (newValue) => {
   transform: translateX(var(--box-negative-half-width)) rotateY(-90deg);
 }
 .box__face--bottom {
-  transform: translateY(-100px) rotateX(90deg);
+  transform: translateY(0) rotateX(90deg);
 }
-
 .box__face--top {
   transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
   cursor: pointer;
@@ -198,13 +207,13 @@ watch(backgroundColor, (newValue) => {
     transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
   }
   100% {
-    transform: translateY(-390px) translateZ(-120px) rotateX(160deg);
+    transform: translateY(-170px) translateZ(-170px) rotateX(220deg);
   }
 }
 
 @keyframes close-box {
   0% {
-    transform: translateY(-390px) translateZ(-120px) rotateX(160deg);
+    transform: translateY(-170px) translateZ(-170px) rotateX(220deg);
   }
   100% {
     transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
