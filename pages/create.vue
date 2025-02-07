@@ -101,7 +101,18 @@
 
     <div class="create-page__preview">
       <div class="create-page__preview-container">
-        <!-- <GreetingsLoveBox /> -->
+        <div class="create-page__preview-container--box">
+          <GreetingsLoveBox
+            :is-preview="true"
+            v-model:to="state.to"
+            v-model:text="state.text"
+            v-model:from="state.from"
+            v-model:images="files"
+            v-model:music="state.music"
+            v-model:box-color="state.boxColor"
+            v-model:background-color="state.backgroundColor"
+          />
+        </div>
 
         <UButton
           class="flex w-full justify-center"
@@ -253,7 +264,11 @@ function submitButton() {
     @apply w-full sm:max-h-[80dvh] rounded flex flex-col items-center py-4;
 
     &-container {
-      @apply max-w-[520px] min-w-[92vw] sm:min-w-[360px] max-h-[800px] min-h-[700px] rounded flex flex-col justify-between items-center sm:gap-8 gap-4;
+      @apply max-w-[520px] min-w-[92vw] sm:min-w-[360px] max-h-[700px] min-h-[700px] rounded flex flex-col justify-between items-center sm:gap-8 gap-4;
+
+      &--box {
+        @apply flex flex-1 rounded-xl max-w-[520px] min-w-[92vw] sm:min-w-[360px] max-h-[620px] min-h-[620px];
+      }
     }
   }
 }
