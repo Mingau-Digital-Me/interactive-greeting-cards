@@ -86,7 +86,7 @@ onMounted(() => {
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
   --color-background: #f97373;
-  --color-box: red // #000000;;
+  --color-box: #000000;
 }
 
 .love-box {
