@@ -94,10 +94,21 @@
             />
           </UFormGroup>
 
-          <UButton class="flex justify-center" type="submit">{{
-            t("CreatePage.form.create")
-          }}</UButton>
+          <UButton class="hidden" id="buttonSubmit" type="submit"></UButton>
         </UForm>
+      </div>
+    </div>
+
+    <div class="create-page__preview">
+      <div class="create-page__preview-container">
+        <!-- <GreetingsLoveBox /> -->
+
+        <UButton
+          class="flex w-full justify-center"
+          type="submit"
+          @click="submitButton()"
+          >{{ t("CreatePage.form.create") }}</UButton
+        >
       </div>
     </div>
   </div>
@@ -215,6 +226,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     images,
   });
 }
+
+function submitButton() {
+  const buttonSubmit = document.getElementById("buttonSubmit");
+  buttonSubmit?.click();
+}
 </script>
 
 <style lang="postcss">
@@ -230,6 +246,14 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
     &-container {
       @apply flex flex-col justify-center sm:gap-8 gap-4;
+    }
+  }
+
+  &__preview {
+    @apply w-full sm:max-h-[80dvh] rounded flex flex-col items-center py-4;
+
+    &-container {
+      @apply max-w-[520px] min-w-[92vw] sm:min-w-[360px] max-h-[800px] min-h-[700px] rounded flex flex-col justify-between items-center sm:gap-8 gap-4;
     }
   }
 }
