@@ -161,6 +161,7 @@ watch(isPro, (old, current) => {
   if (!old && current) {
     state.boxColor = DEFAULT_BOX_COLOR;
     state.backgroundColor = DEFAULT_BACKGROUND_COLOR;
+    state.music = "";
 
     updateColorPickerComponent.value++;
   }
@@ -193,12 +194,10 @@ async function handleImages(event: Event) {
         },
       ],
       callback: () => {
-        if (!isPro) {
-          toast.add({
-            title: t("CreatePage.toast.removePhotos.title"),
-            description: t("CreatePage.toast.removePhotos.description"),
-          });
-        }
+        toast.add({
+          title: t("CreatePage.toast.removePhotos.title"),
+          description: t("CreatePage.toast.removePhotos.description"),
+        });
       },
     });
   }
