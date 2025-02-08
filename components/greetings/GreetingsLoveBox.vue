@@ -6,7 +6,7 @@
         <div class="box__face box__face--right"></div>
         <div class="box__face box__face--back"></div>
         <div class="box__face box__face--left"></div>
-        <div id="love-box-top" class="cube__face box__face--top"></div>
+        <div ref="loveBoxTop" class="cube__face box__face--top"></div>
         <div class="cube__face box__face--bottom"></div>
       </div>
     </div>
@@ -27,6 +27,8 @@ const backgroundColor = defineModel("backgroundColor");
 const music = defineModel("music");
 
 const props = defineProps<IGreetingsLoveBoxProps>();
+
+const loveBoxTop = ref<HTMLElement | null>(null);
 
 const CSS_VARS = {
   BOX_COLOR: "--color-box",
@@ -50,15 +52,13 @@ function addEvents() {
 }
 
 function addEventOpenTopLoveBox() {
-  const topFace = document.getElementById("love-box-top");
-
-  topFace?.addEventListener("click", () => {
-    if (topFace.classList.contains("open")) {
-      topFace.classList.remove("open");
-      topFace.classList.add("close");
-    } else if (topFace.classList.contains("close") || true) {
-      topFace.classList.remove("close");
-      topFace.classList.add("open");
+  loveBoxTop.value?.addEventListener("click", () => {
+    if (loveBoxTop.value?.classList.contains("open")) {
+      loveBoxTop.value?.classList.remove("open");
+      loveBoxTop.value?.classList.add("close");
+    } else if (loveBoxTop.value?.classList.contains("close") || true) {
+      loveBoxTop.value?.classList.remove("close");
+      loveBoxTop.value?.classList.add("open");
     }
   });
 }
