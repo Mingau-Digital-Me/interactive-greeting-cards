@@ -29,6 +29,7 @@ interface ISpeedometerOfLoveProps {
 
 const { currentElement = document.body } =
   defineProps<ISpeedometerOfLoveProps>();
+const emit = defineEmits(["max-speed"]);
 
 const MAX_VALUE_SPEED = 180;
 
@@ -53,6 +54,9 @@ function updateSpeed(speed: number = 1) {
 
   if (angle.value > MAX_VALUE_SPEED) {
     angle.value = 180;
+
+    removeEventListenerOnSpeedometer();
+    emit("max-speed", true);
   }
 
   if (speedFill.value) {
@@ -98,7 +102,7 @@ function addEventListenerOnSpeedometer(_element: HTMLElement) {
 }
 
 function removeEventListenerOnSpeedometer() {
-  eventListeners.forEach(({ element, type, listener }) => {
+  eventListeners?.forEach(({ element, type, listener }) => {
     element.removeEventListener(type, listener);
   });
   eventListeners.length = 0;

@@ -1,12 +1,21 @@
 <template>
   <div class="love-box">
     <div class="scene">
-      <div class="box">
+      <div ref="loveBox" class="box">
         <div class="box__face box__face--front"></div>
         <div class="box__face box__face--right"></div>
         <div class="box__face box__face--back"></div>
         <div class="box__face box__face--left"></div>
-        <div ref="loveBoxTop" class="cube__face box__face--top"></div>
+        <div ref="loveBoxTop" class="cube__face box__face--top">
+          <SpeedometerOfLove
+            class="speedometer"
+            @max-speed="animationOpenTopLoveBox()"
+          />
+        </div>
+        <div
+          ref="loveBoxTopInside"
+          class="cube__face box__face--top--inside"
+        ></div>
         <div class="cube__face box__face--bottom"></div>
       </div>
     </div>
@@ -28,7 +37,9 @@ const music = defineModel("music");
 
 const props = defineProps<IGreetingsLoveBoxProps>();
 
+const loveBox = ref<HTMLElement | null>(null);
 const loveBoxTop = ref<HTMLElement | null>(null);
+const loveBoxTopInside = ref<HTMLElement | null>(null);
 
 const CSS_VARS = {
   BOX_COLOR: "--color-box",
@@ -47,25 +58,23 @@ watch(backgroundColor, (newValue) => {
   setRootVars(CSS_VARS.BACKGROUND_COLOR, newValue as string);
 });
 
-function addEvents() {
-  addEventOpenTopLoveBox();
+function animationOpenTopLoveBox() {
+  loveBoxTop.value?.classList.remove("close");
+  loveBoxTop.value?.classList.add("open");
+
+  loveBoxTopInside.value?.classList.remove("close");
+  loveBoxTopInside.value?.classList.add("open");
+
+  loveBox.value?.classList.add("box-open");
 }
 
-function addEventOpenTopLoveBox() {
-  loveBoxTop.value?.addEventListener("click", () => {
-    if (loveBoxTop.value?.classList.contains("open")) {
-      loveBoxTop.value?.classList.remove("open");
-      loveBoxTop.value?.classList.add("close");
-    } else if (loveBoxTop.value?.classList.contains("close") || true) {
-      loveBoxTop.value?.classList.remove("close");
-      loveBoxTop.value?.classList.add("open");
-    }
-  });
-}
+function animationCloseTopLoveBox() {
+  loveBoxTop.value?.classList.remove("open");
+  loveBoxTop.value?.classList.add("close");
 
-onMounted(() => {
-  addEvents();
-});
+  loveBoxTopInside.value?.classList.remove("open");
+  loveBoxTopInside.value?.classList.add("close");
+}
 </script>
 
 <style lang="postcss">
@@ -119,6 +128,10 @@ onMounted(() => {
   animation: box-incline 2s ease-in-out forwards;
 }
 
+.box.box-open {
+  animation: open-box 2s ease-in-out forwards;
+}
+
 .box__face,
 .cube__face {
   position: absolute;
@@ -157,9 +170,18 @@ onMounted(() => {
   background-size: cover;
 }
 .box__face--top {
+  @apply flex items-center justify-center;
+
   box-shadow: var(--box-shadow);
   background: var(--color-box);
   background-size: cover;
+}
+.box__face--top--inside {
+  box-shadow: var(--box-shadow);
+  background: var(--color-box);
+  background-size: cover;
+  background: transparent;
+  transition: all 800ms ease-in;
 }
 .box__face--bottom {
   box-shadow: var(--box-shadow);
@@ -186,11 +208,29 @@ onMounted(() => {
   transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
   cursor: pointer;
 }
-.box__face--top.open {
-  animation: open-box 2s ease-in-out forwards;
+.box__face--top--inside {
+  transform: translateY(calc(var(--box-negative-half-width) + 1px))
+    rotateX(90deg);
 }
-.box__face--top.close {
+
+.box__face--top.open,
+.box__face--top--inside.open {
+  animation: open-box-top 2s ease-in-out forwards;
+}
+.box__face--top--inside.open {
+  background: var(--color-box);
+}
+
+.box__face--top.close,
+.box__face--top--inside.close {
   animation: close-box 2s ease-in-out forwards;
+}
+.box__face--top--inside.close {
+  background: transparent;
+}
+
+.speedometer {
+  @apply scale-50;
 }
 
 @keyframes box-incline {
@@ -198,25 +238,25 @@ onMounted(() => {
     transform: rotateX(0deg);
   }
   100% {
-    transform: rotateX(-40deg);
+    transform: rotateX(-40deg) translateZ(220px) translateY(-160px);
+  }
+}
+
+@keyframes open-box-top {
+  0% {
+    transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
+  }
+  100% {
+    transform: translateY(-170px) translateZ(-170px) rotateX(220deg);
   }
 }
 
 @keyframes open-box {
   0% {
-    transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
+    transform: rotateX(-40deg) translateZ(220px) translateY(-160px);
   }
   100% {
-    transform: translateY(-170px) translateZ(-170px) rotateX(220deg);
-  }
-}
-
-@keyframes close-box {
-  0% {
-    transform: translateY(-170px) translateZ(-170px) rotateX(220deg);
-  }
-  100% {
-    transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
+    transform: translateY(80px) translateZ(260px) rotateX(-40deg);
   }
 }
 </style>
