@@ -13,8 +13,8 @@
           />
         </div>
         <div
-          ref="loveBoxTopInside"
-          class="cube__face box__face--top--inside"
+          ref="loveBoxTopInner"
+          class="cube__face box__face--top--inner"
         ></div>
         <div class="cube__face box__face--bottom"></div>
       </div>
@@ -39,7 +39,7 @@ const props = defineProps<IGreetingsLoveBoxProps>();
 
 const loveBox = ref<HTMLElement | null>(null);
 const loveBoxTop = ref<HTMLElement | null>(null);
-const loveBoxTopInside = ref<HTMLElement | null>(null);
+const loveBoxTopInner = ref<HTMLElement | null>(null);
 
 const CSS_VARS = {
   BOX_COLOR: "--color-box",
@@ -62,8 +62,8 @@ function animationOpenTopLoveBox() {
   loveBoxTop.value?.classList.remove("close");
   loveBoxTop.value?.classList.add("open");
 
-  loveBoxTopInside.value?.classList.remove("close");
-  loveBoxTopInside.value?.classList.add("open");
+  loveBoxTopInner.value?.classList.remove("close-inner");
+  loveBoxTopInner.value?.classList.add("open-inner");
 
   loveBox.value?.classList.add("box-open");
 }
@@ -72,8 +72,8 @@ function animationCloseTopLoveBox() {
   loveBoxTop.value?.classList.remove("open");
   loveBoxTop.value?.classList.add("close");
 
-  loveBoxTopInside.value?.classList.remove("open");
-  loveBoxTopInside.value?.classList.add("close");
+  loveBoxTopInner.value?.classList.remove("open-inner");
+  loveBoxTopInner.value?.classList.add("close-inner");
 }
 </script>
 
@@ -136,7 +136,7 @@ function animationCloseTopLoveBox() {
 .cube__face {
   position: absolute;
   width: calc(var(--box-width) + 2px);
-  height: var(--box-height);
+  height: calc(var(--box-height) + 2px);
   border-radius: 4px;
   line-height: 400px;
   font-size: 40px;
@@ -176,12 +176,12 @@ function animationCloseTopLoveBox() {
   background: var(--color-box);
   background-size: cover;
 }
-.box__face--top--inside {
+.box__face--top--inner {
   box-shadow: var(--box-shadow);
   background: var(--color-box);
   background-size: cover;
   background: transparent;
-  transition: all 800ms ease-in;
+  transition: all 500ms linear;
 }
 .box__face--bottom {
   box-shadow: var(--box-shadow);
@@ -208,24 +208,24 @@ function animationCloseTopLoveBox() {
   transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
   cursor: pointer;
 }
-.box__face--top--inside {
+.box__face--top--inner {
   transform: translateY(calc(var(--box-negative-half-width) + 1px))
     rotateX(90deg);
 }
 
-.box__face--top.open,
-.box__face--top--inside.open {
-  animation: open-box-top 2s ease-in-out forwards;
+.box__face--top.open {
+  animation: open-box-top 2s linear forwards;
 }
-.box__face--top--inside.open {
+.box__face--top--inner.open-inner {
+  animation: open-box-top-inner 2s linear forwards;
   background: var(--color-box);
 }
 
-.box__face--top.close,
-.box__face--top--inside.close {
+.box__face--top.close {
   animation: close-box 2s ease-in-out forwards;
 }
-.box__face--top--inside.close {
+.box__face--top--inner.close-inner {
+  animation: close-box 2s ease-in-out forwards;
   background: transparent;
 }
 
@@ -243,6 +243,17 @@ function animationCloseTopLoveBox() {
 }
 
 @keyframes open-box-top {
+  0% {
+    transform: translateY(-100px) translateZ(0) rotateX(90deg);
+  }
+  99% {
+    transform: translateY(-170px) translateZ(-171px) rotateX(220deg);
+  }
+  100% {
+    transform: translateY(-170px) translateZ(-170px) rotateX(220deg);
+  }
+}
+@keyframes open-box-top-inner {
   0% {
     transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
   }
