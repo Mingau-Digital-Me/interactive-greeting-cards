@@ -12,10 +12,9 @@
             @max-speed="animationOpenTopLoveBox()"
           />
         </div>
-        <div
-          ref="loveBoxTopInner"
-          class="cube__face box__face--top--inner"
-        ></div>
+        <div ref="loveBoxTopInner" class="cube__face box__face--top--inner">
+          <div class="polaroids">Love</div>
+        </div>
         <div class="cube__face box__face--bottom"></div>
       </div>
     </div>
@@ -177,8 +176,9 @@ function animationCloseTopLoveBox() {
   background-size: cover;
 }
 .box__face--top--inner {
+  @apply flex items-center justify-center;
+
   box-shadow: var(--box-shadow);
-  background: var(--color-box);
   background-size: cover;
   background: transparent;
   transition: all 500ms linear;
@@ -231,6 +231,12 @@ function animationCloseTopLoveBox() {
 
 .speedometer {
   @apply scale-50;
+}
+
+.polaroids {
+  @apply flex justify-center items-center;
+
+  transform: rotateX(180deg);
 }
 
 @keyframes box-incline {
