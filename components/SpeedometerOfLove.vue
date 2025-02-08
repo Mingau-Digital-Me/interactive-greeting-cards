@@ -3,7 +3,7 @@
     <img
       class="speedometer__image"
       src="../public/components/SpeedometerOfLove/speedometer.png"
-      draggable="false"
+      :draggable="false"
       @mousedown.prevent
       @mousemove.prevent
     />
@@ -24,10 +24,11 @@
 
 <script setup lang="ts">
 interface ISpeedometerOfLoveProps {
-  element?: HTMLElement;
+  currentElement?: HTMLElement;
 }
 
-const { element = document.body } = defineProps<ISpeedometerOfLoveProps>();
+const { currentElement = document.body } =
+  defineProps<ISpeedometerOfLoveProps>();
 
 const MAX_VALUE_SPEED = 180;
 
@@ -35,6 +36,11 @@ const angle = ref(0);
 const speedFill = ref<HTMLElement | null>(null);
 const speedPointer = ref<HTMLElement | null>(null);
 const speedometer = ref<HTMLElement | null>(null);
+const eventListeners: {
+  element: HTMLElement;
+  type: string;
+  listener: EventListener;
+}[] = [];
 
 let alreadyStarted = false;
 
@@ -64,31 +70,51 @@ function updateSpeed(speed: number = 1) {
   }
 }
 
+function addListener(
+  _element: HTMLElement,
+  type: string,
+  listener: EventListener
+) {
+  _element.addEventListener(type, listener);
+  eventListeners.push({ element: _element, type, listener });
+}
+
 function addEventListenerOnSpeedometer(_element: HTMLElement) {
-  _element.addEventListener("mousedown", () => {
+  addListener(_element, "mousedown", () => {
     alreadyStarted = true;
   });
-  _element.addEventListener("mousemove", () => {
+  addListener(_element, "mousemove", () => {
     if (alreadyStarted) {
       updateSpeed(0.2);
     }
   });
-  _element.addEventListener("mouseup", () => {
+  addListener(_element, "mouseup", () => {
     alreadyStarted = false;
   });
 
-  _element.addEventListener("touchmove", () => {
+  addListener(_element, "touchmove", () => {
     updateSpeed(0.4);
   });
+}
+
+function removeEventListenerOnSpeedometer() {
+  eventListeners.forEach(({ element, type, listener }) => {
+    element.removeEventListener(type, listener);
+  });
+  eventListeners.length = 0;
 }
 
 onMounted(() => {
   nextTick(() => {
     if (speedometer.value) {
-      addEventListenerOnSpeedometer(speedometer.value);
+      addEventListenerOnSpeedometer(currentElement);
     }
-    addEventListenerOnSpeedometer(element);
+    addEventListenerOnSpeedometer(currentElement);
   });
+});
+
+onBeforeUnmount(() => {
+  removeEventListenerOnSpeedometer();
 });
 </script>
 
@@ -97,7 +123,7 @@ onMounted(() => {
   @apply flex-1 max-w-[400px] max-h-[400px] relative;
 
   &__image {
-    @apply absolute top-0 left-0;
+    @apply absolute top-0 left-0 cursor-default;
 
     z-index: 1;
   }
