@@ -246,8 +246,8 @@ function animationCloseTopLoveBox() {
   0% {
     transform: translateY(-100px) translateZ(0) rotateX(90deg);
   }
-  98% {
-    transform: translateY(-171px) translateZ(-172px) rotateX(218deg);
+  99% {
+    transform: translateY(-166px) translateZ(-180px) rotateX(218deg);
   }
   100% {
     transform: translateY(-170px) translateZ(-170px) rotateX(220deg);
