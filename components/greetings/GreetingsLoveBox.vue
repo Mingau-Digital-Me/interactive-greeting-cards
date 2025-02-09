@@ -20,8 +20,8 @@
             />
           </div>
         </div>
+        <div class="cube__face box__face--bottom"></div>
       </div>
-      <div class="cube__face box__face--bottom"></div>
     </div>
   </div>
 </template>
