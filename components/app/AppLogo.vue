@@ -6,7 +6,7 @@
     class="flex justify-center items-center"
     @click="navigateToLandingPage"
   >
-    <NuxtImg :height="40" src="./logo-white.png" />
+    <NuxtImg :height="40" src="./logo.png" />
   </UButton>
 </template>
 
