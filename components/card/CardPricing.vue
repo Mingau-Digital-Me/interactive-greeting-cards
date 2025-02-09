@@ -148,7 +148,7 @@ async function navigateToCreate() {
   }
 
   &__most-chosen {
-    @apply absolute -top-5 left-6 bg-red-600 rounded-lg py-2 px-4 font-bold italic;
+    @apply absolute -top-6 left-6 bg-red-900 rounded-lg py-1 px-4 font-bold italic border-2 border-red-600;
   }
 
   &--is-most-chosen {
