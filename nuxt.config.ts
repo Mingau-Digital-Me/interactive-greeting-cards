@@ -33,6 +33,16 @@ export default defineNuxtConfig({
       cookieKey: "i18n_language",
     },
   },
+  app: {
+    pageTransition: {
+      name: "slide-right",
+      mode: "out-in",
+    },
+    layoutTransition: {
+      name: "slide-right",
+      mode: "out-in",
+    },
+  },
   // fileStorage: {
   //   mount: "public/storage",
   // },
