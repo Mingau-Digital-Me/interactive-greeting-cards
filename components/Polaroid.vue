@@ -21,7 +21,7 @@ const imageStyle = computed(() => ({
 
 <style scoped>
 .polaroid {
-  width: 300px;
+  width: 240px;
   height: 300px;
   background: white;
   padding: 12px;

@@ -15,11 +15,20 @@ definePageMeta({
   layout: "greetings",
 });
 
+const images = [
+  "./components/Polaroid/casal1.jfif",
+  "./components/Polaroid/casal2.jpeg",
+  "./components/Polaroid/casal3.jpg",
+  "./components/Polaroid/casal4.jpg",
+  "./components/Polaroid/casal5.jpg",
+  "./components/Polaroid/casal6.jpg",
+];
+
 const state = {
   to: "",
   text: "",
   from: "",
-  files: "",
+  files: images,
   music: "",
   boxColor: "",
   backgroundColor: "",

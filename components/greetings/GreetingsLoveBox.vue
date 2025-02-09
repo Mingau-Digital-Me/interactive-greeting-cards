@@ -13,12 +13,18 @@
           />
         </div>
         <div ref="loveBoxTopInner" class="cube__face box__face--top--inner">
-          <div class="polaroids">
-            <Polaroid
-              class="scale-[0.2]"
-              image-src="./components/Polaroid/casal.jpg"
-            />
-          </div>
+          <PolaroidString
+            :image-src-one="images?.[0]"
+            :image-src-two="images?.[1]"
+            :image-src-three="images?.[2]"
+            class="string"
+          />
+          <PolaroidString
+            :image-src-one="images?.[3]"
+            :image-src-two="images?.[4]"
+            :image-src-three="images?.[5]"
+            class="string"
+          />
         </div>
         <div class="cube__face box__face--bottom"></div>
       </div>
@@ -34,7 +40,10 @@ export interface IGreetingsLoveBoxProps {
 const to = defineModel("to");
 const text = defineModel("text");
 const from = defineModel("from");
-const images = defineModel("images");
+const images = defineModel("images", {
+  type: [Array<string>, String] as PropType<Array<string> | string>,
+});
+
 const boxColor = defineModel("boxColor");
 const backgroundColor = defineModel("backgroundColor");
 const music = defineModel("music");
@@ -174,17 +183,16 @@ function animationCloseTopLoveBox() {
   background-size: cover;
 }
 .box__face--top {
-  @apply flex items-center justify-center;
+  @apply flex justify-center items-center;
 
   box-shadow: var(--box-shadow);
   background: var(--color-box);
   background-size: cover;
 }
 .box__face--top--inner {
-  @apply flex items-center justify-center;
+  @apply flex flex-col-reverse justify-evenly items-center;
 
   box-shadow: var(--box-shadow);
-  background-size: cover;
   background: transparent;
   transition: all 500ms linear;
 }
@@ -238,10 +246,9 @@ function animationCloseTopLoveBox() {
   @apply scale-50;
 }
 
-.polaroids {
-  @apply flex justify-center items-center;
-
+.string {
   transform: rotateX(180deg);
+  scale: 0.9;
 }
 
 @keyframes box-incline {
