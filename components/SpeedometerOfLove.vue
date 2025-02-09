@@ -27,7 +27,7 @@ interface ISpeedometerOfLoveProps {
   currentElement?: HTMLElement;
 }
 
-const { currentElement = document.body } =
+const { currentElement = document?.body } =
   defineProps<ISpeedometerOfLoveProps>();
 const emit = defineEmits(["max-speed"]);
 

@@ -13,10 +13,15 @@
           />
         </div>
         <div ref="loveBoxTopInner" class="cube__face box__face--top--inner">
-          <div class="polaroids">Love</div>
+          <div class="polaroids">
+            <Polaroid
+              class="scale-[0.2]"
+              image-src="./components/Polaroid/casal.jpg"
+            />
+          </div>
         </div>
-        <div class="cube__face box__face--bottom"></div>
       </div>
+      <div class="cube__face box__face--bottom"></div>
     </div>
   </div>
 </template>
