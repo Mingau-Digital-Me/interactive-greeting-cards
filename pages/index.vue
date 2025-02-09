@@ -42,9 +42,9 @@
             {{ $t("LandingPage.section.howItWorks.title") }}
           </h2>
           <NuxtImg
-            :width="120"
+            :width="500"
             src="./pages/LandingPage/arrow.png"
-            class="hidden sm:inline-block -rotate-[65deg] absolute left-48 top-40"
+            class="hidden sm:inline-block absolute top-40"
           />
         </div>
 
