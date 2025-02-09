@@ -33,12 +33,28 @@
       :class="isMostChosen ? 'card-pricing__content--is-most-chosen' : ''"
     >
       <ul>
-        <li v-for="(item, index) in items" :key="index" class="relative mt-1">
+        <li
+          v-for="(item, index) in includeItems"
+          :key="`${index}-include-item`"
+          class="relative mt-1"
+        >
           <UIcon
             name="i-heroicons-solid-heart"
-            class="text-red-600 absolute bottom-1 w-5 h-5"
+            class="text-red-600 absolute top-1 w-5 h-5"
           />
-          <span class="text-lg m-6">{{ item }}</span>
+          <span class="text-lg m-7">{{ item }}</span>
+        </li>
+
+        <li
+          v-for="(item, index) in notIncludeItems"
+          :key="`${index}-not-include-item`"
+          class="relative mt-1"
+        >
+          <UIcon
+            name="i-heroicons-solid-x-mark"
+            class="text-red-600 absolute top-1 w-5 h-5"
+          />
+          <span class="text-lg m-7">{{ item }}</span>
         </li>
       </ul>
     </div>
@@ -71,13 +87,21 @@ interface IProps {
   name: string;
   image: string;
   price: number;
-  items: Array<string>;
+  includeItems: Array<string>;
+  notIncludeItems: Array<string>;
   isPerMonth: boolean;
   isMostChosen: boolean;
 }
 
-const { name, image, price, items, isPerMonth, isMostChosen } =
-  defineProps<IProps>();
+const {
+  name,
+  image,
+  price,
+  includeItems,
+  notIncludeItems,
+  isPerMonth,
+  isMostChosen,
+} = defineProps<IProps>();
 
 const priceCurrency = computed(() => formatCurrency(price));
 const planRecorrency = computed(() =>
@@ -136,7 +160,7 @@ async function navigateToCreate() {
   }
 
   &__content {
-    @apply min-h-40 py-4 bg-gray-100 dark:bg-gray-800 p-6 border-t dark:border-gray-600;
+    @apply min-h-48 py-4 bg-gray-100 dark:bg-gray-800 p-6 border-t dark:border-gray-600;
 
     &--is-most-chosen {
       @apply dark:border-red-500 border-t-2;

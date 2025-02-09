@@ -13,16 +13,16 @@ export default {
     },
     cardsPricing: {
       tierOne: {
-        itemOne: "Um ano de acesso",
-        itemTwo: "Três fotos",
-        itemThree: "Sem música",
+        itemOne: "Acesso por 1 mês",
+        itemTwo: "Inclui 5 fotos",
+        itemThree: "Sem música de fundo",
+        itemFourth: "Cor da caixa e do fundo fixa",
       },
       tierTwo: {
-        itemOne: "Acesso vitalício",
-        itemTwo: "Sete fotos",
-      },
-      tierThree: {
-        itemOne: "Com música",
+        itemOne: "Acesso por 1 mês",
+        itemTwo: "Inclui 8 fotos",
+        itemThree: "Com música de fundo",
+        itemFourth: "Cor da caixa e do fundo personalizável",
       },
     },
     faq: {

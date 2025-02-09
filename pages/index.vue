@@ -110,26 +110,32 @@ const cardsPricing = computed(() => [
     name: t("TogglePlan.type.basic"),
     // image: "",
     image: "./components/CardPricing/single-heart.png",
-    price: 19.9,
+    price: 39.9,
     isPerMonth: true,
     isMostChosen: false,
-    items: [
+    includeItems: [
       t("LandingPage.section.cardsPricing.tierOne.itemOne"),
       t("LandingPage.section.cardsPricing.tierOne.itemTwo"),
+    ],
+    notIncludeItems: [
       t("LandingPage.section.cardsPricing.tierOne.itemThree"),
+      t("LandingPage.section.cardsPricing.tierOne.itemFourth"),
     ],
   },
   {
     name: t("TogglePlan.type.pro"),
     // image: "",
     image: "./components/CardPricing/multiple-hearts.png",
-    price: 290.9,
+    price: 89.9,
     isPerMonth: false,
     isMostChosen: true,
-    items: [
+    includeItems: [
       t("LandingPage.section.cardsPricing.tierTwo.itemOne"),
       t("LandingPage.section.cardsPricing.tierTwo.itemTwo"),
+      t("LandingPage.section.cardsPricing.tierTwo.itemThree"),
+      t("LandingPage.section.cardsPricing.tierTwo.itemFourth"),
     ],
+    notIncludeItems: [],
   },
 ]);
 

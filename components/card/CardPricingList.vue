@@ -12,7 +12,8 @@
         :name="card.name"
         :image="card.image"
         :price="card.price"
-        :items="card.items"
+        :include-items="card.includeItems"
+        :not-include-items="card.notIncludeItems"
         :is-per-month="card.isPerMonth"
         :is-most-chosen="card.isMostChosen"
         :key="index"
@@ -26,7 +27,8 @@ interface ICard {
   name: string;
   image: string;
   price: number;
-  items: Array<string>;
+  includeItems: Array<string>;
+  notIncludeItems: Array<string>;
   isPerMonth: boolean;
   isMostChosen: boolean;
 }
