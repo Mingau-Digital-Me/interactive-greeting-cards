@@ -190,11 +190,10 @@ function animationCloseTopLoveBox() {
   background-size: cover;
 }
 .box__face--top--inner {
-  @apply flex flex-col-reverse justify-start items-center;
+  @apply flex flex-col-reverse justify-start items-center opacity-0 bg-transparent;
 
   box-shadow: var(--box-shadow);
-  background: transparent;
-  transition: all 500ms linear;
+  transition: all 700ms ease-in;
   user-select: none;
 }
 .box__face--bottom {
@@ -231,6 +230,8 @@ function animationCloseTopLoveBox() {
   animation: open-box-top 2s linear forwards;
 }
 .box__face--top--inner.open-inner {
+  @apply opacity-100;
+
   animation: open-box-top-inner 2s linear forwards;
   background: var(--color-box);
 }
