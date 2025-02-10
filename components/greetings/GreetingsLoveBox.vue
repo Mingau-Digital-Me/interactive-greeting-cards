@@ -190,11 +190,12 @@ function animationCloseTopLoveBox() {
   background-size: cover;
 }
 .box__face--top--inner {
-  @apply flex flex-col-reverse justify-evenly items-center;
+  @apply flex flex-col-reverse justify-start items-center;
 
   box-shadow: var(--box-shadow);
   background: transparent;
   transition: all 500ms linear;
+  user-select: none;
 }
 .box__face--bottom {
   box-shadow: var(--box-shadow);

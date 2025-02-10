@@ -7,26 +7,56 @@
       />
       <Polaroid
         :image-src="imageSrcOne"
-        class="polaroid-string__polaroid--one"
+        class="polaroid-string__polaroid polaroid--one"
+        @click="toggleBringToFront($event, 0)"
       />
       <Polaroid
         :image-src="imageSrcTwo"
-        class="polaroid-string__polaroid--two"
+        class="polaroid-string__polaroid polaroid--two"
+        @click="toggleBringToFront($event, 1)"
       />
       <Polaroid
         :image-src="imageSrcThree"
-        class="polaroid-string__polaroid--three"
+        class="polaroid-string__polaroid polaroid--three"
+        @click="toggleBringToFront($event, 2)"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 const props = defineProps({
   imageSrcOne: String,
   imageSrcTwo: String,
   imageSrcThree: String,
 });
+
+const originalParents = ref<(Element | null)[]>([]);
+const originalSiblings = ref<(Element | null)[]>([]);
+
+function toggleBringToFront(event: Event, index: number) {
+  const polaroid = event.currentTarget as HTMLElement;
+  const isExpanded = polaroid.classList.contains("expanded");
+
+  if (isExpanded) {
+    // return to original location
+    polaroid.classList.remove("expanded");
+    originalParents.value[index]?.insertBefore(
+      polaroid,
+      originalSiblings.value[index]
+    );
+  } else {
+    // save original location before removing
+    originalParents.value[index] = polaroid.parentElement;
+    originalSiblings.value[index] = polaroid.nextElementSibling;
+
+    // move to body
+    document.body.appendChild(polaroid);
+    polaroid.classList.add("expanded");
+  }
+}
 </script>
 
 <style lang="postcss">
@@ -44,32 +74,45 @@ const props = defineProps({
   }
 
   &__polaroid {
-    &--one,
-    &--two,
-    &--three {
-      @apply absolute z-0;
-    }
-
-    &--one {
-      left: -97px;
-      top: -90px;
-      scale: 0.16;
-      transform: rotateZ(8deg);
-    }
-    &--two {
-      top: -85px;
-      left: -28px;
-      right: 36px;
-      margin-inline: auto;
-      width: fit-content;
-      scale: 0.16;
-    }
-    &--three {
-      right: -90px;
-      top: -94px;
-      scale: 0.16;
-      transform: rotateZ(-12deg);
-    }
+    @apply absolute z-0 cursor-pointer;
   }
+}
+
+.polaroid {
+  transition: transform 0.5s ease-in-out, scale 0.5s ease-in-out;
+
+  &--one,
+  &--two,
+  &--three {
+    scale: 0.16;
+    cursor: pointer;
+  }
+
+  &--one {
+    left: -90px;
+    top: -90px;
+    transform: rotateZ(12deg);
+  }
+
+  &--two {
+    top: -84px;
+    left: -18px;
+    right: 36px;
+  }
+
+  &--three {
+    right: -77px;
+    top: -94px;
+    transform: rotateZ(-12deg);
+  }
+}
+
+.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  scale: 1;
+  transform: translate(-50%, -50%);
 }
 </style>

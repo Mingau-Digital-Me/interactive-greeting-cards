@@ -1,7 +1,12 @@
 <template>
-  <div class="polaroid">
-    <div class="image-wrapper" :style="imageStyle">
-      <img v-if="imageSrc" :src="imageSrc" alt="Polaroid image" />
+  <div class="polaroid" onclick="(event) => event.stopPropagation()">
+    <div class="polaroid__image-wrapper" :style="imageStyle">
+      <img
+        v-if="imageSrc"
+        :src="imageSrc"
+        alt="Polaroid image"
+        class="polaroid__image"
+      />
     </div>
     <slot></slot>
   </div>
@@ -19,32 +24,32 @@ const imageStyle = computed(() => ({
 }));
 </script>
 
-<style scoped>
+<style lang="postcss">
 .polaroid {
-  width: 240px;
+  width: 220px;
   height: 300px;
   background: white;
-  padding: 12px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-}
 
-.image-wrapper {
-  width: 200px;
-  height: 240px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
+  &__image-wrapper {
+    width: 200px;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
 
-.image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: contrast(1.1) brightness(0.9) sepia(0.2);
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.1) brightness(0.9) sepia(0.2);
+  }
 }
 </style>
