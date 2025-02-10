@@ -39,6 +39,7 @@ const originalSiblings = ref<(Element | null)[]>([]);
 function toggleBringToFront(event: Event, index: number) {
   const polaroid = event.currentTarget as HTMLElement;
   const isExpanded = polaroid.classList.contains("expanded");
+  const holdPolaroidsHTMLElement = document.getElementById("hold-polaroid");
 
   if (isExpanded) {
     // return to original location
@@ -53,7 +54,7 @@ function toggleBringToFront(event: Event, index: number) {
     originalSiblings.value[index] = polaroid.nextElementSibling;
 
     // move to body
-    document.body.appendChild(polaroid);
+    holdPolaroidsHTMLElement?.appendChild(polaroid);
     polaroid.classList.add("expanded");
   }
 }
