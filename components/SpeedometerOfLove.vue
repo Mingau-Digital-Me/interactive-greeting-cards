@@ -1,5 +1,22 @@
 <template>
   <div ref="speedometer" class="speedometer">
+    <div class="speedometer__label">
+      <span class="speedometer__label--text">
+        <span class="mx-[2px] font-normal">{{
+          t("SpeedometerOfLove.my")
+        }}</span>
+        <span class="mx-[2px] font-bold text-red-600">{{
+          t("SpeedometerOfLove.time")
+        }}</span>
+        <span class="mx-[2px] font-normal" style="word-spacing: 2px">{{
+          t("SpeedometerOfLove.withYouIs")
+        }}</span>
+        <span class="mx-1 text-xl playwrite-co font-bold">{{
+          t("SpeedometerOfLove.precious")
+        }}</span>
+      </span>
+    </div>
+
     <img
       class="speedometer__image"
       src="../public/components/SpeedometerOfLove/speedometer.png"
@@ -27,6 +44,7 @@ interface ISpeedometerOfLoveProps {
   currentElement?: HTMLElement;
 }
 
+const { t } = useI18n();
 const { currentElement = document?.body } =
   defineProps<ISpeedometerOfLoveProps>();
 const emit = defineEmits(["max-speed"]);
@@ -125,6 +143,18 @@ onBeforeUnmount(() => {
 <style lang="postcss">
 .speedometer {
   @apply flex-1 max-w-[400px] max-h-[400px] relative;
+
+  &__label {
+    @apply absolute bottom-28 text-sm cursor-default text-black z-10 text-center;
+
+    user-select: none;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &--text {
+      @apply whitespace-nowrap;
+    }
+  }
 
   &__image {
     @apply absolute top-0 left-0 cursor-default;
