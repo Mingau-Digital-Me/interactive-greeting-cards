@@ -211,7 +211,7 @@ function resetPages() {
     transform: translate3d(0, 0, 30px) rotateX(0);
   }
   100% {
-    transform: translate3d(40px, 90px, 240px) rotateX(-50deg);
+    transform: translate3d(39px, 90px, 240px) rotateX(-50deg);
   }
 }
 
