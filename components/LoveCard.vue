@@ -94,30 +94,32 @@ function cardManagement() {
         requestAnimationFrame(() => {
           movePage(thirdLoveCardItem, "card-back-page");
         });
-      }, 200);
+      }, 400);
 
       setTimeout(() => {
         refRemoveClass(secondLoveCardItem, "card-next-page");
         requestAnimationFrame(() => {
           movePage(secondLoveCardItem, "card-back-page");
         });
-      }, 400);
+      }, 800);
 
       setTimeout(() => {
         refRemoveClass(firstLoveCardItem, "card-next-page");
         requestAnimationFrame(() => {
           movePage(firstLoveCardItem, "card-back-page");
         });
-      }, 600);
+      }, 1200);
 
       setTimeout(() => {
         refRemoveClass(loveCard, "take-and-open-card");
         requestAnimationFrame(() => {
           refAddClass(loveCard, "close-and-save-card");
         });
+      }, 2000);
 
+      setTimeout(() => {
         resetPages();
-      }, 800);
+      }, 2200);
     }
   }
 }
@@ -217,11 +219,17 @@ function resetPages() {
   0% {
     transform: translate3d(0, 0, 4px) rotateY(0);
   }
-  50% {
-    transform: translate3d(-40px, 2px, 80px) rotateY(-90deg) scaleY(0.97);
+  33% {
+    ransform: translate3d(-22px, 0, 40px) rotateY(-40deg) scaleY(0.45)
+      scaleX(0.25);
   }
-  75% {
-    transform: translate3d(-64px, 1px, 42px) rotateY(-135deg) scaleY(1);
+  50% {
+    transform: translate3d(-40px, 2px, 80px) rotateY(-90deg) scaleY(0.9)
+      scaleX(0.49);
+  }
+  66% {
+    transform: translate3d(-62px, 0, 40px) rotateY(-135deg) scaleY(0.95)
+      scaleX(0.75);
   }
   100% {
     transform: translate3d(-80px, 0, 4px) rotateY(-180deg);
