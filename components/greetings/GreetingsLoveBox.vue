@@ -26,7 +26,9 @@
             class="string"
           />
         </div>
-        <div class="cube__face box__face--bottom"></div>
+        <div class="cube__face box__face--bottom">
+          <LoveCard />
+        </div>
       </div>
     </div>
   </div>
@@ -197,6 +199,8 @@ function animationCloseTopLoveBox() {
   user-select: none;
 }
 .box__face--bottom {
+  @apply block;
+
   box-shadow: var(--box-shadow);
   background: var(--color-box);
   background-size: cover;
@@ -216,6 +220,7 @@ function animationCloseTopLoveBox() {
 }
 .box__face--bottom {
   transform: translateY(0) rotateX(90deg);
+  transform-style: preserve-3d;
 }
 .box__face--top {
   transform: translateY(var(--box-negative-half-width)) rotateX(90deg);
