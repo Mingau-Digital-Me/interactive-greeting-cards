@@ -75,51 +75,39 @@ function cardManagement() {
     if (currentPage === PAGE.FIRST) {
       setTimeout(() => {
         movePage(firstLoveCardItem, "card-next-page");
-
         currentPage = PAGE.SECOND;
-      }, 500);
-    } else if (currentPage === PAGE.SECOND) {
-      movePage(secondLoveCardItem, "card-next-page");
-
-      currentPage = PAGE.THIRD;
-    } else if (currentPage === PAGE.THIRD) {
-      movePage(thirdLoveCardItem, "card-next-page");
-
-      currentPage = PAGE.FOURTH;
-    } else if (currentPage === PAGE.FOURTH) {
-      currentPage = PAGE.FIRST;
-
-      setTimeout(() => {
-        refRemoveClass(thirdLoveCardItem, "card-next-page");
-        requestAnimationFrame(() => {
-          movePage(thirdLoveCardItem, "card-back-page");
-        });
       }, 400);
 
+      setTimeout(() => {
+        movePage(secondLoveCardItem, "card-next-page");
+        currentPage = PAGE.THIRD;
+      }, 800);
+    } else if (currentPage === PAGE.THIRD) {
       setTimeout(() => {
         refRemoveClass(secondLoveCardItem, "card-next-page");
         requestAnimationFrame(() => {
           movePage(secondLoveCardItem, "card-back-page");
         });
-      }, 800);
+      }, 100);
 
       setTimeout(() => {
         refRemoveClass(firstLoveCardItem, "card-next-page");
         requestAnimationFrame(() => {
           movePage(firstLoveCardItem, "card-back-page");
         });
-      }, 1200);
+      }, 400);
 
       setTimeout(() => {
         refRemoveClass(loveCard, "take-and-open-card");
         requestAnimationFrame(() => {
           refAddClass(loveCard, "close-and-save-card");
         });
-      }, 2000);
+      }, 800);
 
       setTimeout(() => {
         resetPages();
-      }, 2200);
+        currentPage = PAGE.FIRST;
+      }, 1300);
     }
   }
 }
