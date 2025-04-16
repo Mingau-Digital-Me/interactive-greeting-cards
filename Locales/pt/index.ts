@@ -3,8 +3,9 @@ import CardPricing from "./components/card/CardPricing";
 import CardPricingList from "./components/card/CardPricingList";
 import TogglePlan from "./components/TogglePlan";
 import SpeedometerOfLove from "./components/SpeedometerOfLove";
-import LandingPage from "./pages/index";
+import LoveCard from "./components/LoveCard";
 import CreatePage from "./pages/create";
+import LandingPage from "./pages/index";
 
 export default {
   AppLanguage,
@@ -14,4 +15,5 @@ export default {
   SpeedometerOfLove,
   CreatePage,
   LandingPage,
+  LoveCard,
 };

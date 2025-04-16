@@ -6,6 +6,15 @@
         class="love-card__item love-card__item--first"
       >
         <img
+          style="transform-style: preserve-3d"
+          src=""
+          class="love-card__text"
+        />
+        <div class="love-card__text">{{ t("LoveCard.toMy") }}</div>
+        <p class="love-card__text--cursive playwrite-co">
+          {{ t("LoveCard.love") }}
+        </p>
+        <img
           src="/public/components/LoveCard/cover.png"
           class="love-card__image"
         />
@@ -45,6 +54,8 @@
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
+
 enum PAGE {
   FIRST,
   SECOND,
@@ -177,6 +188,22 @@ function resetPages() {
 
   &__image {
     @apply h-28 w-20;
+  }
+
+  &__text {
+    @apply bg-transparent text-sm text-red-700 font-normal absolute bottom-[18px] text-center left-1/2;
+
+    white-space: nowrap;
+    transform: translate(-50%) scale(0.4);
+    transform-style: preserve-3d;
+
+    &--cursive {
+      @apply bg-transparent text-5xl text-red-700 font-bold absolute bottom-[-8px] text-center left-1/2;
+
+      white-space: nowrap;
+      transform: translate(-50%) scale(0.4);
+      transform-style: preserve-3d;
+    }
   }
 }
 
