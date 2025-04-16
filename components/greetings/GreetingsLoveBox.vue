@@ -27,7 +27,7 @@
           />
         </div>
         <div class="cube__face box__face--bottom">
-          <LoveCard />
+          <LoveCard :image-cover="images?.[0]" />
         </div>
       </div>
     </div>

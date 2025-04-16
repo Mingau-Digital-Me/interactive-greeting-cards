@@ -5,11 +5,7 @@
         ref="firstLoveCardItem"
         class="love-card__item love-card__item--first"
       >
-        <img
-          style="transform-style: preserve-3d"
-          src=""
-          class="love-card__text"
-        />
+        <Polaroid :image-src="imageCover" class="love-card__polaroid" />
         <div class="love-card__text">{{ t("LoveCard.toMy") }}</div>
         <p class="love-card__text--cursive playwrite-co">
           {{ t("LoveCard.love") }}
@@ -55,6 +51,11 @@
 
 <script setup lang="ts">
 const { t } = useI18n();
+
+const props = defineProps({
+  imageCover: String,
+  imageInside: String,
+});
 
 enum PAGE {
   FIRST,
@@ -204,6 +205,15 @@ function resetPages() {
       transform: translate(-50%) scale(0.4);
       transform-style: preserve-3d;
     }
+  }
+
+  &__polaroid {
+    @apply absolute;
+
+    left: -70px;
+    bottom: -82px;
+    transform: scale(0.2);
+    transform-style: preserve-3d;
   }
 }
 
