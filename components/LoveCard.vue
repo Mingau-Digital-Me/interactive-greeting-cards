@@ -21,6 +21,14 @@
         class="love-card__item love-card__item--second"
       >
         <img
+          src="/public/components/LoveCard/love-card-balloon.png"
+          class="love-card__polaroid--inside-image"
+        />
+        <Polaroid
+          :image-src="imageInside"
+          class="love-card__polaroid love-card__polaroid--inside"
+        />
+        <img
           src="/public/components/LoveCard/love-card-left.png"
           class="love-card__image"
         />
@@ -93,33 +101,30 @@ function cardManagement() {
       setTimeout(() => {
         movePage(secondLoveCardItem, "card-next-page");
         currentPage = PAGE.THIRD;
-      }, 800);
+      }, 405);
     } else if (currentPage === PAGE.THIRD) {
       setTimeout(() => {
         refRemoveClass(secondLoveCardItem, "card-next-page");
         requestAnimationFrame(() => {
           movePage(secondLoveCardItem, "card-back-page");
         });
-      }, 100);
+      }, 400);
 
       setTimeout(() => {
         refRemoveClass(firstLoveCardItem, "card-next-page");
         requestAnimationFrame(() => {
           movePage(firstLoveCardItem, "card-back-page");
         });
-      }, 400);
+      }, 405);
 
       setTimeout(() => {
         refRemoveClass(loveCard, "take-and-open-card");
         requestAnimationFrame(() => {
           refAddClass(loveCard, "close-and-save-card");
         });
-      }, 800);
-
-      setTimeout(() => {
         resetPages();
         currentPage = PAGE.FIRST;
-      }, 1300);
+      }, 1500);
     }
   }
 }
@@ -195,14 +200,14 @@ function resetPages() {
     @apply bg-transparent text-sm text-red-700 font-normal absolute bottom-[18px] text-center left-1/2;
 
     white-space: nowrap;
-    transform: translate(-50%) scale(0.4);
+    transform: translate(-50%) translateZ(1px) scale(0.4);
     transform-style: preserve-3d;
 
     &--cursive {
       @apply bg-transparent text-5xl text-red-700 font-bold absolute bottom-[-8px] text-center left-1/2;
 
       white-space: nowrap;
-      transform: translate(-50%) scale(0.4);
+      transform: translate(-50%) translateZ(1px) scale(0.4);
       transform-style: preserve-3d;
     }
   }
@@ -212,13 +217,24 @@ function resetPages() {
 
     left: -70px;
     bottom: -82px;
-    transform: scale(0.2);
+    transform: scale(0.2) translateZ(1px);
     transform-style: preserve-3d;
+
+    &--inside {
+      transform: scale(0.2) translateY(90px) translateZ(-1px) rotateZ(12deg);
+
+      &-image {
+        position: absolute;
+        transform: scale(0.4) translateX(-20px) translateY(-50px)
+          translateZ(-2px) rotateY(180deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+      }
+    }
   }
 }
 
 .love-card.take-and-open-card {
-  animation: remove-love-card 500ms ease-out forwards;
+  animation: remove-love-card 500ms linear forwards;
 }
 .love-card.close-and-save-card {
   animation: remove-love-card 500ms reverse forwards;
