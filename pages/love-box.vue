@@ -24,10 +24,18 @@ const images = [
   "./components/Polaroid/casal6.jpg",
 ];
 
+const to = "Nome de quem esta mandando";
+const text = `Que a vida te abrace com alegrias, 
+conquistas e muito amor. Que cada dia traga novos
+motivos para sorrir. Você merece tudo de melhor,
+hoje e sempre. Parabéns pela sua jornada, eu te amo
+muuuuuuuuuito!`;
+const from = "Nome da pessoa";
+
 const state = {
-  to: "",
-  text: "",
-  from: "",
+  to,
+  text,
+  from,
   files: images,
   music: "",
   boxColor: "",

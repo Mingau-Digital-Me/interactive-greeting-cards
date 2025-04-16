@@ -19,7 +19,7 @@ export default {
     to: "O campo deve ser preenchido.",
     text: {
       min: "O campo deve ter no mínimo 100 caracteres.",
-      max: "O campo deve ter no máximo 500 caracteres.",
+      max: "O campo deve ter no máximo 200 caracteres.",
     },
     from: "O campo deve ser preenchido.",
     music: "A URL deve ser um link válido do YouTube.",

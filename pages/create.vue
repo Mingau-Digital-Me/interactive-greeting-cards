@@ -34,7 +34,7 @@
           >
             <UTextarea v-model="state.text" :maxrows="5" :rows="6" />
             <p
-              v-if="state.text.length > 500"
+              v-if="state.text.length > 200"
               class="absolute -top-6 right-0 text-xs text-red-400"
             >
               {{ state.text.length }} / {{ MAX_TEXT_CHARACTER }}
@@ -141,7 +141,7 @@ const isPro = ref<boolean>(query.isPro === "true");
 const updateColorPickerComponent = ref(0);
 
 const MIN_TEXT_CHARACTER = 100;
-const MAX_TEXT_CHARACTER = 500;
+const MAX_TEXT_CHARACTER = 200;
 const MAX_NUMBER_OF_IMAGES_FOR_BASIC_PLAN = 5;
 const MAX_NUMBER_OF_IMAGES_FOR_PRO_PLAN = 8;
 const YOUTUBE_REGEX =

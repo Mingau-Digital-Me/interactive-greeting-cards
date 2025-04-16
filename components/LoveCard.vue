@@ -6,7 +6,9 @@
         class="love-card__item love-card__item--first"
       >
         <Polaroid :image-src="imageCover" class="love-card__polaroid" />
-        <div class="love-card__text">{{ t("LoveCard.toMy") }}</div>
+        <div class="love-card__text">
+          {{ t("LoveCard.toMy") }}
+        </div>
         <p class="love-card__text--cursive playwrite-co">
           {{ t("LoveCard.love") }}
         </p>
@@ -38,6 +40,22 @@
         ref="thirdLoveCardItem"
         class="love-card__item love-card__item--third"
       >
+        <p class="love-card__letter-from">
+          {{ from }}
+        </p>
+        <p class="love-card__letter-text">
+          {{ message }}
+        </p>
+        <p class="love-card__letter-love-you playwrite-co">
+          {{ t("LoveCard.letter.loveYou") }}
+        </p>
+        <p class="love-card__letter-with-love">
+          {{ t("LoveCard.letter.withLove") }}
+        </p>
+        <p class="love-card__letter-to">
+          {{ to }}
+        </p>
+
         <img
           src="/public/components/LoveCard/love-card-right.png"
           class="love-card__image"
@@ -63,6 +81,9 @@ const { t } = useI18n();
 const props = defineProps({
   imageCover: String,
   imageInside: String,
+  from: String,
+  message: String,
+  to: String,
 });
 
 enum PAGE {
@@ -210,6 +231,38 @@ function resetPages() {
       transform: translate(-50%) translateZ(1px) scale(0.4);
       transform-style: preserve-3d;
     }
+  }
+
+  &__letter-from,
+  &__letter-text,
+  &__letter-love-you,
+  &__letter-with-love,
+  &__letter-to {
+    @apply text-sm absolute font-normal text-[6px] leading-none whitespace-nowrap;
+
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__letter-from {
+    @apply top-[8px];
+  }
+
+  &__letter-text {
+    @apply w-full text-[5px] top-[14px] text-center text-wrap p-2;
+    white-space: wrap;
+  }
+
+  &__letter-love-you {
+    @apply bottom-[28px] font-bold text-[12px];
+  }
+
+  &__letter-with-love {
+    @apply bottom-[20px] text-[5px];
+  }
+
+  &__letter-to {
+    @apply bottom-[6px] text-wrap w-full text-center;
   }
 
   &__polaroid {
